@@ -1,0 +1,41 @@
+// syllable styles (private, not used directly in HTML)
+.accent-pointed
+  font-weight: bold
+.preparatory-pointed
+  font-style: italic
+
+// psalm styles applied always
+.flex
+  .accent
+    &.accent-pointed
+
+// psalm styles
+.pointing-mediation-accents-1
+  .mediation
+    .accent-1
+      &.accent-pointed
+.pointing-mediation-accents-2
+  &.pointing-mediation-accents-1
+  .mediation
+    .accent-2
+      &.accent-pointed
+
+.pointing-mediation-accent-sliding
+  .mediation
+    .accent-sliding
+      &.accent-pointed
+
+.pointing-mediation-preparatory-1
+  .mediation
+    .preparatory-1
+      &.preparatory-pointed
+.pointing-mediation-preparatory-2
+  &.pointing-mediation-preparatory-1
+  .mediation
+    .preparatory-2
+      &.preparatory-pointed
+.pointing-mediation-preparatory-3
+  &.pointing-mediation-preparatory-2
+  .mediation
+    .preparatory-3
+      &.preparatory-pointed
