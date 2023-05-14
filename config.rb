@@ -71,11 +71,12 @@ end
 class PsalmMarkup
   def self.call(path)
     new(Pslm::PslmReader.new.read_str(
-          File.read(path) +
+          File.read(path).strip +
           if File.basename(path) =~ /dan3iii/
             ''
           else
-            File.read(File.join(File.dirname(path), 'doxologie.zalm'))
+            "\n" +
+              File.read(File.join(File.dirname(path), 'doxologie.zalm'))
           end
         )).call
   end
