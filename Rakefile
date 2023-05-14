@@ -26,9 +26,9 @@ task default: %i[tones_json notated_tones]
 desc 'delete all build files'
 task(:clean) { sh 'rm -rf build/*/*' }
 
-task tones_json: 'build/tones.json'
+task tones_json: 'data/psalm_tones.json'
 
-file 'build/tones.json' => [iafile('psalmodie/zakladni.yml')] do |task|
+file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml')] do |task|
   r = PsalmToneGroup.from_file(task.prerequisites[0]).each_pair.collect do |name,tone|
     t = tone.all.first.quantities
     {
@@ -42,7 +42,7 @@ file 'build/tones.json' => [iafile('psalmodie/zakladni.yml')] do |task|
         d = i.quantities
         {
           name: i.diff,
-          image: "build/images/psalmodie_#{i.score_id}.svg",
+          image: "/images/psalmodie_#{i.score_id}.svg",
 
           accents: d.second_accents,
           preparatory: d.second_preparatory,
@@ -60,7 +60,7 @@ task notated_tones: [iafile('nastroje/splitscores.rb'), tmpfile('psalmodie.ly')]
   Dir['build/tmp/*.ly'].each do |f|
     next if f == t.prerequisites.last
 
-    output = File.join('build', 'images', File.basename(f).sub(/\.ly$/, ''))
+    output = File.join('source', 'images', File.basename(f).sub(/\.ly$/, ''))
 
     sh LILYPOND, '--svg', '-o', output, f
 

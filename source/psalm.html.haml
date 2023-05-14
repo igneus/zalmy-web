@@ -1,0 +1,23 @@
+%h1= psalm.title
+
+%div.psalm-tone-selector
+  - data.psalm_tones.each do |tone|
+    %span.psalm-tone
+      %strong= tone['name']
+      - tone['differentiae'].each do |diff|
+        %a{
+          href: '#notation',
+          data: {
+            'image': diff['image'],
+            'first-accents': tone['mediation']['accents'],
+            'first-preparatory': tone['mediation']['preparatory'],
+            'first-sliding': tone['mediation']['sliding'] ? 1 : nil,
+            'second-accents': diff['accents'],
+            'second-preparatory': diff['preparatory'],
+            'second-sliding': diff['sliding'] ? 1 : nil
+          }
+        }= diff['name']
+
+%img#notation{src: ''}
+
+!= psalm_markup(psalm)
