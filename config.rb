@@ -35,7 +35,14 @@ end
 
 class PsalmMarkup
   def self.call(path)
-    new(Pslm::PslmReader.new.read_str(File.read(path))).call
+    new(Pslm::PslmReader.new.read_str(
+          File.read(path) +
+          if File.basename(path) =~ /dan3iii/
+            ''
+          else
+            File.read(File.join(File.dirname(path), 'doxologie.zalm'))
+          end
+        )).call
   end
 
   def initialize(psalm)
