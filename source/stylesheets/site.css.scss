@@ -19,3 +19,16 @@ a {
 .psalm-tone-selector {
   .psalm-tone { margin-right: 1em; }
 }
+
+%rubric { color: darkred; }
+
+.r { @extend %rubric; }
+
+.psalm {
+  .strophe {
+    margin-bottom: 0.6em;
+    .verse:last-child {
+      .verse_part:last-child::after { @extend %rubric; content: " —"; }
+    }
+  }
+}

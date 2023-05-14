@@ -72,8 +72,8 @@ class PsalmMarkup
   end
 
   APPEND = {
-    flex: '&nbsp;† ',
-    first: '&nbsp;* ',
+    flex: '&nbsp;<span class="r">†</span> ',
+    first: '&nbsp;<span class="r">*</span> ',
     second: ''
   }
 
