@@ -21,10 +21,15 @@ const setPointing = (link) => {
 };
 
 window.onload = () => {
-  document.querySelectorAll('.psalm-tone-selector a').forEach(el => {
-    el.addEventListener('click', () => {
+  const pointingLinks = document.querySelectorAll('.psalm-tone-selector a');
+  pointingLinks.forEach(el => {
+    el.addEventListener('click', (event) => {
       setNotation(el);
       setPointing(el);
+      event.preventDefault();
     });
   });
+
+  // select initial psalm tone
+  pointingLinks[0].click();
 };
