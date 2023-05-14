@@ -11,8 +11,18 @@ title: Žalmy
   označkované pro zpěv na chorální nápěvy.
 </p>
 
+<% canticles, psalms = all_psalms.partition(&:is_canticle) %>
+
+<h2>Žalmy</h2>
 <ul>
-  <% all_psalms.each do |ps| %>
+  <% psalms.each do |ps| %>
+  <li><%= link_to ps.title, ps.web_path %></li>
+  <% end %>
+</ul>
+
+<h2>Kantika</h2>
+<ul>
+  <% canticles.each do |ps| %>
   <li><%= link_to ps.title, ps.web_path %></li>
   <% end %>
 </ul>
