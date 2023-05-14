@@ -10,9 +10,44 @@ IN_ADIUTORIUM_PATH = ENV['IN_ADIUTORIUM_PATH'] || raise('envvar required')
 module Psalms
   extend self
 
+  # order of books in the Bible
+  # (copied from In-adiutorium/antifonar/indexstyle_bible.xdy)
+  BIBLE_BOOKS = [
+    "Ex",
+    "Dt",
+    "1 Sam",
+    "1 Kron",
+    "Tob",
+    "Jdt",
+    "Žalm",
+    "Př",
+    "Mdr",
+    "Sir",
+    "Iz",
+    "Jer",
+    "Pláč",
+    "Ez",
+    "Dan",
+    "Oz",
+    "Hab",
+    "Sof",
+    "Lk",
+    "Ef",
+    "Flp",
+    "Kol",
+    "1 Tim",
+    "1 Petr",
+    "Zj",
+  ].freeze
+  BIBLE_BOOK_RE = Regexp.new BIBLE_BOOKS.join('|')
+
   Psalm = Struct.new(:title, :path, :path_name, :is_canticle) do
     def web_path
       "/#{is_canticle ? 'kantikum' : 'zalm'}/#{path_name.sub(/zalm|kantikum_/, '')}.html"
+    end
+
+    def sort_key
+      [BIBLE_BOOK_RE.match(title).yield_self {|x| BIBLE_BOOKS.index(x && x[0]) } ] + title.scan(/\d+/).collect(&:to_i)
     end
   end
 
@@ -20,8 +55,7 @@ module Psalms
     reader = Pslm::PslmReader.new
 
     Dir[File.join(IN_ADIUTORIUM_PATH, 'antifonar', 'zalmy', '*.zalm')]
-      .reject {|i| i =~ /doxologie|responsorialni|pascha/ }
-      .sort
+      .reject {|i| i =~ /doxologie|responsorialni|pascha|tedeum/ }
       .collect do |i|
       Psalm.new(
         reader.read_str(File.read(i)).header.title,
@@ -30,6 +64,7 @@ module Psalms
         File.basename(i).start_with?('kantikum')
       )
     end
+      .sort_by(&:sort_key)
   end
 end
 
