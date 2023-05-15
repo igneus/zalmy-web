@@ -3,20 +3,14 @@
 %div.psalm-tone-selector
   - data.psalm_tones.each do |tone|
     %span.psalm-tone
-      %strong= tone['name']
-      - tone['differentiae'].each do |diff|
-        %a{
-          href: '#notation',
-          data: {
-            'image': diff['image'],
-            'first-accents': tone['mediation']['accents'],
-            'first-preparatory': tone['mediation']['preparatory'],
-            'first-sliding': tone['mediation']['sliding'] ? 1 : nil,
-            'second-accents': diff['accents'],
-            'second-preparatory': diff['preparatory'],
-            'second-sliding': diff['sliding'] ? 1 : nil
-          }
-        }= diff['name']
+      - if tone['differentiae'].size == 1 && tone['differentiae'][0]['name'].empty?
+        = partial 'tone_link', locals: {tone: tone, diff: tone['differentiae'][0]} do
+          %strong= tone['name']
+      - else
+        %strong= tone['name']
+        - tone['differentiae'].each do |diff|
+          = partial 'tone_link', locals: {tone: tone, diff: diff} do
+            = diff['name']
 
 %img#notation{src: ''}
 
