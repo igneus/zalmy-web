@@ -116,9 +116,10 @@ class PsalmMarkup
   def verse_part_markup(part)
     accent_i = 0
     before_last_accent = 0
+    si = 0
 
     part.words.reverse.collect do |w|
-      w.syllables.reverse.each_with_index.collect do |s, si|
+      w.syllables.reverse.collect do |s|
         classes = []
 
         if accent_i > 0
@@ -135,6 +136,8 @@ class PsalmMarkup
         if (1..3).include? before_last_accent
           classes << "preparatory-#{before_last_accent}"
         end
+
+        si += 1
 
         r = s
         r = "<span class=\"#{classes.join(' ')}\">#{s}</span>" unless classes.empty?
