@@ -32,7 +32,7 @@ file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml')] do |task|
   r = PsalmToneGroup.from_file(task.prerequisites[0]).each_pair.collect do |name,tone|
     t = tone.all.first.quantities
     {
-      name: tone.name,
+      name: tone.name.sub(/^_/, ''),
       mediation: {
         accents: t.first_accents,
         preparatory: t.first_preparatory,
