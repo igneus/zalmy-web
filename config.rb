@@ -52,19 +52,31 @@ module Psalms
   end
 
   def all
-    reader = Pslm::PslmReader.new
+    @all ||=
+      begin
+        reader = Pslm::PslmReader.new
 
-    Dir[File.join(IN_ADIUTORIUM_PATH, 'antifonar', 'zalmy', '*.zalm')]
-      .reject {|i| i =~ /doxologie|responsorialni|pascha|tedeum/ }
-      .collect do |i|
-      Psalm.new(
-        reader.read_str(File.read(i)).header.title,
-        i,
-        File.basename(i).sub(/\.zalm$/, ''),
-        File.basename(i).start_with?('kantikum')
-      )
-    end
-      .sort_by(&:sort_key)
+        Dir[File.join(IN_ADIUTORIUM_PATH, 'antifonar', 'zalmy', '*.zalm')]
+          .reject {|i| i =~ /doxologie|responsorialni|pascha|tedeum/ }
+          .collect do |i|
+          Psalm.new(
+            reader.read_str(File.read(i)).header.title,
+            i,
+            File.basename(i).sub(/\.zalm$/, ''),
+            File.basename(i).start_with?('kantikum')
+          )
+        end
+          .sort_by(&:sort_key)
+      end
+  end
+
+  def [](path_name)
+    @by_path_name ||=
+      begin
+        Hash.new.tap {|r| all.each {|i| r[i.path_name] = i } }
+      end
+
+    @by_path_name[path_name]
   end
 end
 
