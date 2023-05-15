@@ -20,6 +20,21 @@ const setPointing = (link) => {
   document.querySelector('.psalm').setAttribute('class', classes.join(' '));
 };
 
+const setUrl = (link) => {
+  const ds = link.dataset;
+  window.location.hash = '#!' + ds.tone + ':' + ds.differentia;
+};
+
+const selectInitialPsalmTone = (pointingLinks) => {
+  const hash = window.location.hash;
+  if (hash.length == 0) {
+    randomElement(pointingLinks).click();
+  } else {
+    const parts = hash.substr(2).split(':');
+    document.querySelector('a[data-tone="' + parts[0] + '"][data-differentia = "' + parts[1] + '"]').click();
+  }
+};
+
 const randomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 window.onload = () => {
@@ -28,10 +43,10 @@ window.onload = () => {
     el.addEventListener('click', (event) => {
       setNotation(el);
       setPointing(el);
+      setUrl(el);
       event.preventDefault();
     });
   });
 
-  // select initial psalm tone
-  randomElement(pointingLinks).click();
+  selectInitialPsalmTone(pointingLinks);
 };
