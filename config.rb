@@ -191,6 +191,23 @@ Psalms.all.each do |ps|
   )
 end
 
+proxy(
+  '/tedeum.html',
+  '/psalm.html',
+  locals: {
+    psalm:
+      File.join(IN_ADIUTORIUM_PATH, 'antifonar', 'zalmy', 'tedeum.zalm').yield_self do |i|
+      Psalms::Psalm.new(
+        Pslm::PslmReader.new.read_str(File.read(i)).header.title,
+        i,
+        File.basename(i).sub(/\.zalm$/, ''),
+        false
+      )
+    end
+  },
+  ignore: true
+)
+
 # Helpers
 # Methods defined in the helpers block are available in templates
 # https://middlemanapp.com/basics/helper-methods/
@@ -200,8 +217,18 @@ helpers do
     Psalms.all
   end
 
+  def psalm(path_name)
+    Psalms[path_name]
+  end
+
   def psalm_markup(psalm)
     PsalmMarkup.(psalm.path)
+  end
+
+  def psalm_link(ps)
+    return psalm_link(psalm(ps)) if ps.is_a? String
+
+    link_to ps.title, ps.web_path
   end
 end
 

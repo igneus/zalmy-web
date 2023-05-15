@@ -18,13 +18,13 @@ title: Žalmy
 <h2>Žalmy</h2>
 <ul>
   <% psalms.each do |ps| %>
-  <li><%= link_to ps.title, ps.web_path %></li>
+  <li><%= psalm_link ps %></li>
   <% end %>
 </ul>
 
 <h2>Kantika</h2>
 <ul>
   <% canticles.each do |ps| %>
-  <li><%= link_to ps.title, ps.web_path %></li>
+  <li><%= psalm_link ps %></li>
   <% end %>
 </ul>
