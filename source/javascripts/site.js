@@ -20,6 +20,8 @@ const setPointing = (link) => {
   document.querySelector('.psalm').setAttribute('class', classes.join(' '));
 };
 
+const randomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
 window.onload = () => {
   const pointingLinks = document.querySelectorAll('.psalm-tone-selector a');
   pointingLinks.forEach(el => {
@@ -31,5 +33,5 @@ window.onload = () => {
   });
 
   // select initial psalm tone
-  pointingLinks[0].click();
+  randomElement(pointingLinks).click();
 };
