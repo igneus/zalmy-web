@@ -21,11 +21,13 @@ require iafile('nastroje/psalmtone.rb')
 
 
 
-task default: %i[tones_json notated_tones]
+desc 'generated files not managed by Middleman'
+task generated_files: %i[tones_json notated_tones]
 
 desc 'delete all build files'
 task(:clean) { sh 'rm -rf build/*/*' }
 
+desc 'JSON with metadata of psalm tones'
 task tones_json: 'data/psalm_tones.json'
 
 file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml'), __FILE__] do |task|
@@ -55,9 +57,12 @@ file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml'), __FILE__] do 
   File.write task.name, JSON.dump(r)
 end
 
-task notated_tones: [iafile('nastroje/splitscores.rb'), tmpfile('psalmodie.ly'), __FILE__] do |t|
+desc 'psalm tone notation'
+task notated_tones: 'source/images/psalmodie_I-a.svg'
+
+file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tmpfile('psalmodie.ly'), __FILE__] do |t|
   ruby *t.prerequisites.dup.tap {|pre| pre.insert(1, '--ids', '--prepend-text', '\version "2.19.0"   \include "src/lilypond/psalmtone.ly"') }
-  Dir['build/tmp/*.ly'].each do |f|
+  Dir['build/tmp/*_*.ly'].each do |f|
     next if f == t.prerequisites.last
 
     output = File.join('source', 'images', File.basename(f).sub(/\.ly$/, ''))
@@ -74,3 +79,15 @@ end
 file tmpfile('psalmodie.ly') => iafiles('nastroje/psalmtone.rb', 'psalmodie/zakladni.yml') do |t|
   sh "ruby #{t.prerequisites[0]} #{t.prerequisites[1]} > #{t.name}"
 end
+
+desc 'build static website for deployment'
+task build: [:generated_files] do
+  sh 'middleman', 'build'
+end
+
+desc 'start local server'
+task server: [:generated_files] do
+  sh 'middleman', 'server'
+end
+
+task default: :build
