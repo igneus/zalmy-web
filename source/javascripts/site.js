@@ -25,6 +25,13 @@ const setUrl = (link) => {
   window.location.hash = '#!' + ds.tone + ':' + ds.differentia;
 };
 
+const markSelected = (link) => {
+  const cls = 'selected';
+  document.querySelectorAll('.'+cls).forEach(i => i.classList.remove(cls));
+  link.classList.add(cls);
+  link.parentElement.classList.add(cls);
+};
+
 const selectInitialPsalmTone = (pointingLinks) => {
   const hash = window.location.hash;
   if (hash.length == 0) {
@@ -44,6 +51,7 @@ window.onload = () => {
       setNotation(el);
       setPointing(el);
       setUrl(el);
+      markSelected(el);
       event.preventDefault();
     });
   });
