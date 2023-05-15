@@ -58,6 +58,7 @@ choralniRezimPsalmodie = {
   \choralniRezim
   \stemDown
   \slurDown
+  \override Score.BarLine.extra-spacing-width = #'(-2 . 2)
 }
 
 % Divisiones
