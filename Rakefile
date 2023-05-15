@@ -28,7 +28,7 @@ task(:clean) { sh 'rm -rf build/*/*' }
 
 task tones_json: 'data/psalm_tones.json'
 
-file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml')] do |task|
+file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml'), __FILE__] do |task|
   r = PsalmToneGroup.from_file(task.prerequisites[0]).each_pair.collect do |name,tone|
     t = tone.all.first.quantities
     {
@@ -55,7 +55,7 @@ file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml')] do |task|
   File.write task.name, JSON.dump(r)
 end
 
-task notated_tones: [iafile('nastroje/splitscores.rb'), tmpfile('psalmodie.ly')] do |t|
+task notated_tones: [iafile('nastroje/splitscores.rb'), tmpfile('psalmodie.ly'), __FILE__] do |t|
   ruby *t.prerequisites.dup.tap {|pre| pre.insert(1, '--ids', '--prepend-text', '\version "2.19.0"   \include "src/lilypond/psalmtone.ly"') }
   Dir['build/tmp/*.ly'].each do |f|
     next if f == t.prerequisites.last
