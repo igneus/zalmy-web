@@ -71,7 +71,8 @@ end
 class PsalmMarkup
   def self.call(path)
     new(Pslm::PslmReader.new.read_str(
-          File.read(path).strip +
+          File.read(path).strip
+            .gsub('\zalmVersUpozorneni{2}', '').gsub('\textit{', '').gsub('}', '') + # hardcoded LaTeX markup in Benedictus
           if File.basename(path) =~ /dan3iii/
             ''
           else
