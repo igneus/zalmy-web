@@ -120,6 +120,8 @@ class PsalmMarkup
 
     part.words.reverse.collect do |w|
       w.syllables.reverse.collect do |s|
+        next s if s =~ /^[^\w]*$/ # "syllables" consisting e.g. of punctuation only
+
         classes = []
 
         if accent_i > 0
