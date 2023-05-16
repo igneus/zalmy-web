@@ -54,6 +54,7 @@ a {
 }
 
 @media print {
+  body { padding: 1rem 1rem; }
   nav, footer,
   .psalm-tone:not(.selected), .psalm-tone * { display: none; }
 
