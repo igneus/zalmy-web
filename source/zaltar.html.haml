@@ -13,5 +13,5 @@ title: Žaltář
     - else
       - vv.each_pair do |hour, vvv|
         %p
-          %strong= hour
+          %strong= data.hour_names[hour] || hour
           = partial 'psalms_list', locals: {items: vvv}
