@@ -20,11 +20,17 @@
 
       - psalms.each do |i|
         - case i.to_s
-        - when '1tim3', 'zj19'
-          %strong= "TODO #{i}"
+        - when '1tim3'
+          1 Tim 3 (zpívá se na
+          %a{href: in_adiutorium_sheet_link('kant1Tim3')} vlastní nápěv
+          )
+        - when 'zj19'
+          srov. Zj 19 (zpívá se na
+          %a{href: in_adiutorium_sheet_link('kantZj19')} vlastní nápěv
+          )
         - when /^\d+(?!kron|sam|petr)/
           = psalm_link "zalm#{i}"
         - when /^\((.*?)\)$/
-          = $1
+          %em= $1
         - else
           = psalm_link "kantikum_#{i}"
