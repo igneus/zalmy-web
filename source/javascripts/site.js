@@ -34,11 +34,18 @@ const markSelected = (link) => {
 
 const selectInitialPsalmTone = (pointingLinks) => {
   const hash = window.location.hash;
-  if (hash.length == 0) {
+  const tone = decodeURIComponent(hash).substr(2)
+  const parts = tone.split(':');
+  const pointingLink = document.querySelector('a[data-tone="' + parts[0] + '"][data-differentia = "' + parts[1] + '"]');
+
+  if (pointingLink == null) {
+    if (hash.length > 0) {
+      console.log('Psalm tone "' + tone + '" not found.')
+    }
+
     randomElement(pointingLinks).click();
   } else {
-    const parts = decodeURIComponent(hash).substr(2).split(':');
-    document.querySelector('a[data-tone="' + parts[0] + '"][data-differentia = "' + parts[1] + '"]').click();
+    pointingLink.click();
   }
 };
 
