@@ -1,0 +1,23 @@
+---
+title: Rejstřík
+---
+
+<h1>
+  Rejstřík žalmů a kantik
+</h1>
+
+<% canticles, psalms = all_psalms.partition(&:is_canticle) %>
+
+<h2>Žalmy</h2>
+<ul>
+  <% psalms.each do |ps| %>
+  <li><%= psalm_link ps %></li>
+  <% end %>
+</ul>
+
+<h2>Kantika</h2>
+<ul>
+  <% canticles.each do |ps| %>
+  <li><%= psalm_link ps %></li>
+  <% end %>
+</ul>
