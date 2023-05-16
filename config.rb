@@ -230,6 +230,10 @@ helpers do
 
     link_to ps.title, ps.web_path
   end
+
+  def in_adiutorium_sheet_link(sheet_symbol)
+    "http://www.inadiutorium.cz/noty##{sheet_symbol}"
+  end
 end
 
 # Build-specific configuration
