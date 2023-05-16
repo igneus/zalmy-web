@@ -1,0 +1,9 @@
+---
+title: Temporál
+---
+
+%h1 Žalmy pro liturgické doby
+
+- data.proper_psalms.select {|k| k != 'Sanktorál' && k != 'Společné texty' }.each_pair do |title, v|
+  %h2= title
+  = partial 'proper_psalms_listing', locals: {items: v}

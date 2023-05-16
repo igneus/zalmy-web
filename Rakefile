@@ -22,7 +22,7 @@ require iafile('nastroje/psalmtone.rb')
 
 
 desc 'generated files not managed by Middleman'
-task generated_files: %i[tones_json notated_tones psalter]
+task generated_files: %i[tones_json notated_tones psalter proper]
 
 desc 'delete all build files'
 task(:clean) { sh 'rm -rf build/*/*' }
@@ -114,6 +114,13 @@ file 'data/psalter.yaml' => [iafile('antifonar/antifonar_zaltar.ltex'), __FILE__
       f.puts r if r && !skip
     end
   end
+end
+
+desc 'table of proper psalms for feasts'
+task proper: 'data/proper_psalms.yaml'
+
+file 'data/proper_psalms.yaml' => [iafile('antifonar/svatecnizaltar_index.yml')] do |t|
+  cp t.prerequisites[0], t.name
 end
 
 desc 'build static website for deployment'

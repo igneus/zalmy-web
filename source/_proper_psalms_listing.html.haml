@@ -1,0 +1,30 @@
+- items.each_pair do |occasion, hours|
+  %h3= occasion
+  - hours.each_pair do |hour, psalms|
+    %p
+      %strong= hour
+
+      - if psalms.is_a?(String)
+        - if psalms =~ /^\((.*?)\)$/
+          %em= $1
+        - elsif psalms == 'rchne1t'
+          %em Ranní chvály nedělní z 1. týdne žaltáře.
+        - elsif psalms =~ /^(ne|ut|pa)([1-4])t$/
+          %em
+            Z
+            = {'ne' => 'neděle', 'ut' => 'úterý', 'pa' => 'pátku'}[$1]
+            = "#{$2}. týdne"
+        - else
+          - raise "unexpected #{psalms.inspect}"
+        - next
+
+      - psalms.each do |i|
+        - case i.to_s
+        - when '1tim3', 'zj19'
+          %strong= "TODO #{i}"
+        - when /^\d+(?!kron|sam|petr)/
+          = psalm_link "zalm#{i}"
+        - when /^\((.*?)\)$/
+          = $1
+        - else
+          = psalm_link "kantikum_#{i}"

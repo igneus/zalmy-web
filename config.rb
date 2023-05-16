@@ -76,7 +76,7 @@ module Psalms
         Hash.new.tap {|r| all.each {|i| r[i.path_name] = i } }
       end
 
-    @by_path_name[path_name]
+    @by_path_name[path_name] || raise("psalm #{path_name.inspect} not found")
   end
 end
 
