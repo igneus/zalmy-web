@@ -53,6 +53,10 @@ a {
   .verse:first-line { text-indent: 0; }
 }
 
+.psalms-list {
+  a { display: inline-block; margin: 0 0.2em; }
+}
+
 @media print {
   body { padding: 1rem 1rem; }
   nav, footer,
