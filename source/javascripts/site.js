@@ -43,7 +43,9 @@ const selectInitialPsalmTone = (pointingLinks) => {
       console.log('Psalm tone "' + tone + '" not found.')
     }
 
-    randomElement(pointingLinks).click();
+    randomElement(
+      Array.from(pointingLinks).filter((link) => !link.dataset.differentia.endsWith('*'))
+    ).click();
   } else {
     pointingLink.click();
   }
