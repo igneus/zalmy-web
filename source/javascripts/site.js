@@ -37,7 +37,7 @@ const selectInitialPsalmTone = (pointingLinks) => {
   if (hash.length == 0) {
     randomElement(pointingLinks).click();
   } else {
-    const parts = hash.substr(2).split(':');
+    const parts = decodeURIComponent(hash).substr(2).split(':');
     document.querySelector('a[data-tone="' + parts[0] + '"][data-differentia = "' + parts[1] + '"]').click();
   }
 };
