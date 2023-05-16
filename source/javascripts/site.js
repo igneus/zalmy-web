@@ -20,11 +20,6 @@ const setPointing = (link) => {
   document.querySelector('.psalm').setAttribute('class', classes.join(' '));
 };
 
-const setUrl = (link) => {
-  const ds = link.dataset;
-  window.location.hash = '#!' + ds.tone + ':' + ds.differentia;
-};
-
 const markSelected = (link) => {
   const cls = 'selected';
   document.querySelectorAll('.'+cls).forEach(i => i.classList.remove(cls));
@@ -64,9 +59,7 @@ window.onload = () => {
     el.addEventListener('click', (event) => {
       setNotation(el);
       setPointing(el);
-      setUrl(el);
       markSelected(el);
-      event.preventDefault();
     });
   });
 
