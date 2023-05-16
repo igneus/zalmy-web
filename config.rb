@@ -133,7 +133,10 @@ class PsalmMarkup
 
     part.words.reverse.collect do |w|
       w.syllables.reverse.collect do |s|
-        next s if s =~ /^[^\w]*$/ # "syllables" consisting e.g. of punctuation only
+        if s =~ /^[^[:word:]]*$/ # "syllables" consisting e.g. of punctuation only
+          STDERR.puts "skipping syllable #{s.to_s.inspect}"
+          next s
+        end
 
         classes = []
 
