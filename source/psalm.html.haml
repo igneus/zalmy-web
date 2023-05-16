@@ -15,3 +15,10 @@
 %img#notation{src: ''}
 
 != psalm_markup(psalm)
+
+%footer
+  %p
+    Našli jste chybu? Zdrojový soubor
+    = psalm.is_canticle ? 'kantika' : 'žalmu'
+    můžete
+    %a{href: "https://github.com/igneus/In-adiutorium/blob/master/antifonar/zalmy/#{psalm.path_name}.zalm"} opravit na Githubu
