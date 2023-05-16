@@ -22,7 +22,7 @@ require iafile('nastroje/psalmtone.rb')
 
 
 desc 'generated files not managed by Middleman'
-task generated_files: %i[tones_json notated_tones]
+task generated_files: %i[tones_json notated_tones psalter]
 
 desc 'delete all build files'
 task(:clean) { sh 'rm -rf build/*/*' }
@@ -78,6 +78,42 @@ end
 
 file tmpfile('psalmodie.ly') => iafiles('nastroje/psalmtone.rb', 'psalmodie/zakladni.yml') do |t|
   sh "ruby #{t.prerequisites[0]} #{t.prerequisites[1]} > #{t.name}"
+end
+
+desc 'YAML with the psalter distribution'
+task psalter: 'data/psalter.yaml'
+
+file 'data/psalter.yaml' => [iafile('antifonar/antifonar_zaltar.ltex'), __FILE__] do |t|
+  skip = true
+  File.open(t.name, 'w') do |f|
+    f.puts '---'
+    File.read(t.prerequisites[0]).each_line do |line|
+      line.gsub! '\\\\', '' # double backslash, LaTeX line break
+      line.gsub! '~', ' '
+
+      r =
+        case line
+        when /\\nadpisTyden\{(.+?)\}\{(.+?)\}/
+          skip = true if $1.include?('Sváteční')
+          "#{$1}:"
+            .yield_self do |x|
+            if $2 =~ /žaltáře|cyklus|kompletář/i
+              skip = false
+              x
+            end
+          end
+        when /\\nadpisDen\{(.+?)\}/
+          "  #{$1}:"
+        when /\\((nespory|modlitba|ranni).*?)$/, /\\nadpisHodinka\{(.+?)\}/
+          "    #{$1}:"
+        when /\\zalm(div)?\{(.+?)\}/
+          "      - zalm#{$2}"
+        when /\\kantikum\{(.+?)\}/
+          "      - kantikum_#{$1}" unless $1 == 'nuncdimittis'
+        end
+      f.puts r if r && !skip
+    end
+  end
 end
 
 desc 'build static website for deployment'

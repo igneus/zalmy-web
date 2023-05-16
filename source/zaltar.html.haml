@@ -1,0 +1,17 @@
+---
+title: Žaltář
+---
+
+%h1 Žaltář
+
+- data.psalter.each_pair do |title, v|
+  %h2= title
+  - v.each_pair do |subtitle, vv|
+    %h3= subtitle
+    - if vv.is_a? Array
+      = partial 'psalms_list', locals: {items: vv}
+    - else
+      - vv.each_pair do |hour, vvv|
+        %p
+          %strong= hour
+          = partial 'psalms_list', locals: {items: vvv}
