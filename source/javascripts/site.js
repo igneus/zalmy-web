@@ -46,6 +46,11 @@ const randomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 window.onload = () => {
   const pointingLinks = document.querySelectorAll('.psalm-tone-selector a');
+  if (pointingLinks.length == 0) {
+    // not a psalm page
+    return;
+  }
+
   pointingLinks.forEach(el => {
     el.addEventListener('click', (event) => {
       setNotation(el);
