@@ -213,12 +213,8 @@ proxy(
 # https://middlemanapp.com/basics/helper-methods/
 
 helpers do
-  def all_psalms
-    Psalms.all
-  end
-
-  def psalm(path_name)
-    Psalms[path_name]
+  def psalms
+    Psalms
   end
 
   def psalm_markup(psalm)
@@ -226,7 +222,7 @@ helpers do
   end
 
   def psalm_link(ps)
-    return psalm_link(psalm(ps)) if ps.is_a? String
+    return psalm_link(psalms[ps]) if ps.is_a? String
 
     link_to ps.title, ps.web_path
   end

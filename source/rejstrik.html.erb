@@ -6,11 +6,11 @@ title: Rejstřík
   Rejstřík žalmů a kantik
 </h1>
 
-<% canticles, psalms = all_psalms.partition(&:is_canticle) %>
+<% canticles, pss = psalms.all.partition(&:is_canticle) %>
 
 <h2>Žalmy</h2>
 <ul>
-  <% psalms.each do |ps| %>
+  <% pss.each do |ps| %>
   <li><%= psalm_link ps %></li>
   <% end %>
 </ul>
