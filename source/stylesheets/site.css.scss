@@ -1,7 +1,8 @@
 %rubric { color: darkred; }
+$text-color: #333;
 
 body {
-  color: #333;
+  color: $text-color;
   font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir",
     "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans",
     "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu",
@@ -50,4 +51,15 @@ a {
   }
   .verse { padding-left: 1em; text-indent: -1em; }
   .verse:first-line { text-indent: 0; }
+}
+
+@media print {
+  nav, footer,
+  .psalm-tone:not(.selected), .psalm-tone * { display: none; }
+
+  // hide the psalm tone selector except of the selected tone
+  .psalm-tone-selector { font-size: small; text-align: center; }
+  .psalm-tone.selected {
+    strong, a.selected { display: inline; color: $text-color !important; text-decoration: none; font-weight: normal; }
+  }
 }

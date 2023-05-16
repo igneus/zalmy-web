@@ -12,8 +12,10 @@
     <%= javascript_include_tag "site" %>
   </head>
   <body>
-    <%= link_to 'Homepage', '/' %>
-    <%= link_to 'Každodenní texty', '/kazdodenni.html' %>
+    <nav>
+      <%= link_to 'Homepage', '/' %>
+      <%= link_to 'Každodenní texty', '/kazdodenni.html' %>
+    </nav>
 
     <%= yield %>
   </body>
