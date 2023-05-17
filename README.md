@@ -1,13 +1,14 @@
 # Žalmy
 
 Code generating a static website with Czech psalms pointed for chant,
-leveraging data and tools of the [In adiutorium][ia] project.
+leveraging data (psalm texts with accents marked, psalm tone notation)
+and tools of the [In adiutorium][ia] project.
 
 ## Prerequisites
 
-- ruby
+- Ruby
 - LilyPond
-- Inkscape 1.2
+- Inkscape 1.2 (used for SVG cropping)
 
 ## Building
 
