@@ -157,12 +157,12 @@ class PsalmMarkup
 
         si += 1
 
-        r = s
+        r = s.sub(' ', '&nbsp;') # space within a rythmic unit is always non-breaking
         unless classes.empty?
-          if r.size > 5
-            STDERR.puts "suspiciously long marked syllable #{r.to_s.inspect}"
+          if s.size > 5
+            STDERR.puts "suspiciously long marked syllable #{s.to_s.inspect}"
           end
-          r = "<span class=\"#{classes.join(' ')}\">#{s}</span>"
+          r = "<span class=\"#{classes.join(' ')}\">#{r}</span>"
         end
         r
       end.reverse.join('')
