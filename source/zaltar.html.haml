@@ -4,12 +4,12 @@ title: Žaltář
 
 %h1 Žaltář
 
-- data.psalter.each_pair do |title, v|
+- data.psalter.each_pair.with_index(1) do |(title, v), i|
   %h2= title
   - v.each_pair do |subtitle, vv|
     - if vv.is_a? Array
       = partial 'psalms_list', locals: {title: subtitle, items: vv}
     - else
-      %h3= subtitle
+      %h3{id: title.include?('týden') ? "t#{i}#{I18n.transliterate(subtitle[0..1].downcase)}" : nil}= subtitle
       - vv.each_pair do |hour, vvv|
         = partial 'psalms_list', locals: {title: data.hour_names[hour] || hour, items: vvv}
