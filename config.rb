@@ -151,14 +151,19 @@ class PsalmMarkup
           classes << 'accent-sliding'
         end
 
-        if (1..3).include? before_last_accent
+        if part.pos != :flex && (1..3).include?(before_last_accent)
           classes << "preparatory-#{before_last_accent}"
         end
 
         si += 1
 
         r = s
-        r = "<span class=\"#{classes.join(' ')}\">#{s}</span>" unless classes.empty?
+        unless classes.empty?
+          if r.size > 5
+            STDERR.puts "suspiciously long marked syllable #{r.to_s.inspect}"
+          end
+          r = "<span class=\"#{classes.join(' ')}\">#{s}</span>"
+        end
         r
       end.reverse.join('')
     end.reverse.join(' ') + APPEND[part.pos]
