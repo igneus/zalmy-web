@@ -110,6 +110,8 @@ file 'data/psalter.yaml' => [iafile('antifonar/antifonar_zaltar.ltex'), __FILE__
           "      - zalm#{$2}"
         when /\\kantikum\{(.+?)\}/
           "      - kantikum_#{$1}" unless $1 == 'nuncdimittis'
+        when /\\input{kantikum_zj19.tex}/
+          "      - kantikum_zj19"
         end
       f.puts r if r && !skip
     end

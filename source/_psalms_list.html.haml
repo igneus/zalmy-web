@@ -1,4 +1,7 @@
 %p.psalms-list
   %strong= title
   - items.each do |i|
-    = psalm_link i
+    - if i == 'kantikum_zj19'
+      = partial 'kantikum_zj19'
+    - else
+      = psalm_link i
