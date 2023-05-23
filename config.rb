@@ -4,6 +4,7 @@
 require 'dotenv/load'
 require 'pslm'
 require 'markaby'
+require 'rack/offline'
 
 IN_ADIUTORIUM_PATH = ENV['IN_ADIUTORIUM_PATH'] || raise('envvar required')
 
@@ -247,3 +248,11 @@ end
 #   activate :minify_css
 #   activate :minify_javascript
 # end
+
+# declare resources cached by the browser for offline use
+offline = ::Rack::Offline.configure do
+  Dir['source/images/psalmodie_*.svg'].each do |f|
+    cache f.sub('source/', '')
+  end
+end
+map("/offline.appcache") { run offline }
