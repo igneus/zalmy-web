@@ -1,0 +1,28 @@
+h1= psalm.title
+
+.psalm-tone-selector
+  - data.psalm_tones.each do |tone|
+    span.psalm-tone
+      - if tone['differentiae'].size == 1 && tone['differentiae'][0]['name'].empty?
+        = partial 'tone_link', locals: {tone: tone, diff: tone['differentiae'][0]} do
+          strong= tone['name']
+      - else
+        strong= tone['name']
+        - tone['differentiae'].each do |diff|
+          = partial 'tone_link', locals: {tone: tone, diff: diff} do
+            = diff['name']
+
+img#notation src=''
+
+== psalm_markup(psalm)
+
+- content_for :footer do
+  p
+    | Našli jste chybu? Chyby značkování pro žalmové nápěvy jsou
+    | nejčastěji způsobené chybějícím vyznačením předělů slabik.
+    | Na Githubu můžete
+    a href="https://github.com/igneus/In-adiutorium/blob/master/antifonar/zalmy/#{psalm.path_name}.zalm"
+      | opravit zdrojový soubor
+      = psalm.is_canticle ? 'kantika' : 'žalmu'
+    | nebo
+    a href='https://github.com/igneus/zalmy-web/issues' nahlásit chybu

@@ -102,7 +102,10 @@ GEM
     sassc (2.4.0)
       ffi (~> 1.9)
     servolux (0.13.0)
-    temple (0.10.0)
+    slim (4.1.0)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 2.0.6, < 2.1)
+    temple (0.8.2)
     thor (1.2.2)
     tilt (2.0.11)
     toml (0.3.0)
@@ -125,6 +128,7 @@ DEPENDENCIES
   pslm
   rack-offline
   rake
+  slim (~> 4.1)
   tzinfo-data
   wdm (~> 0.1)
 
