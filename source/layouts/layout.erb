@@ -27,5 +27,15 @@
     </nav>
 
     <%= yield %>
+
+    <footer>
+      <% if content_for? :footer %>
+        <%= yield_content :footer %>
+      <% else %>
+        <p>
+          <a href="https://github.com/igneus/zalmy-web/issues">Nahlásit chybu / navrhnout vylepšení</a>
+        </p>
+      <% end %>
+    </footer>
   </body>
 </html>
