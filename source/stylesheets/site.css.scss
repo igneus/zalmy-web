@@ -42,7 +42,7 @@ a {
   }
 }
 
-#notation { margin: 0.5em 0 0.7em 0; height: 3.5em; }
+#notation { margin: 0.5em 0 0.7em 0; height: 3.5em; max-width: 100%; }
 
 .r { @extend %rubric; }
 
