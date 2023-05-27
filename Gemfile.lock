@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/igneus/pslm.git
+  revision: 1e91c4112ec7e27d7ff51a435a43c6aab492163d
+  specs:
+    pslm (0.0.0)
+      colorize
+      deep_merge (>= 1.1)
+      hashie (> 3.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -88,9 +97,6 @@ GEM
     padrino-support (0.15.3)
     parallel (1.23.0)
     parslet (2.0.0)
-    pslm (0.0.0)
-      colorize
-      deep_merge
     public_suffix (4.0.7)
     rack (2.2.7)
     rack-offline (0.6.4)
@@ -125,7 +131,7 @@ DEPENDENCIES
   markaby
   middleman (~> 4.2)
   middleman-autoprefixer (~> 3.0)
-  pslm
+  pslm!
   rack-offline
   rake
   slim (~> 4.1)

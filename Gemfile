@@ -8,7 +8,7 @@ gem 'wdm', '~> 0.1', platforms: [:mswin, :mingw, :x64_mingw]
 
 gem 'dotenv'
 gem 'markaby'
-gem 'pslm'
+gem 'pslm', github: 'igneus/pslm'
 gem 'rack-offline'
 gem 'rake'
 gem 'slim', '~> 4.1' # stick to older slim because of https://github.com/middleman/middleman/issues/2619
