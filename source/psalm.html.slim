@@ -19,10 +19,10 @@ img#notation src=''
 - content_for :footer do
   p
     | Našli jste chybu? Chyby značkování pro žalmové nápěvy jsou
-    | nejčastěji způsobené chybějícím vyznačením předělů slabik.
-    | Na Githubu můžete
-    a href="https://github.com/igneus/In-adiutorium/blob/master/antifonar/zalmy/#{psalm.path_name}.zalm"
+    |  nejčastěji způsobené chybějícím vyznačením předělů slabik.
+    |  Na Githubu můžete
+    a<> href="https://github.com/igneus/In-adiutorium/blob/master/antifonar/zalmy/#{psalm.path_name}.zalm"
       | opravit zdrojový soubor
-      = psalm.is_canticle ? 'kantika' : 'žalmu'
+      =< psalm.is_canticle ? 'kantika' : 'žalmu'
     | nebo
-    a href='https://github.com/igneus/zalmy-web/issues' nahlásit chybu
+    a< href='https://github.com/igneus/zalmy-web/issues' nahlásit chybu
