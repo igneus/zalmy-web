@@ -110,9 +110,9 @@ class PsalmMarkup
           div.strophe do
             s.verses.each do |v|
               div.verse do
-                v.parts.each do |vp|
-                  span.verse_part.public_send(vp.pos) { vpm.(vp) }
-                end
+                v.parts
+                  .collect {|vp| vpm.(vp.pos, vp) }
+                  .join("\n")
               end
             end
           end
@@ -127,12 +127,17 @@ class PsalmMarkup
     second: ''
   }
 
-  def verse_part_markup(part)
+  def verse_part_markup(part_name, part)
     accent_i = 0
     before_last_accent = 0
     si = 0
 
-    part.words.reverse.collect do |w|
+    part_short_classes =
+      1.upto(2).collect {|i| "accent-#{i}" } +
+      1.upto(3).collect {|i| "preparatory-#{i}" }
+    last_syl_classes = []
+
+    out = part.words.reverse.collect do |w|
       w.syllables.reverse.collect do |s|
         if s =~ /^[^[:word:]]*$/ # "syllables" consisting e.g. of punctuation only
           STDERR.puts "skipping syllable #{s.to_s.inspect}"
@@ -156,6 +161,12 @@ class PsalmMarkup
           classes << "preparatory-#{before_last_accent}"
         end
 
+        # verse part is long enough if it has the given amount
+        # of accented/preparatory syllables + at least one
+        # syllable sung on the reciting tone
+        last_syl_classes.each {|c| part_short_classes.delete c }
+        last_syl_classes = classes
+
         si += 1
 
         r = s.sub(' ', '&nbsp;') # space within a rythmic unit is always non-breaking
@@ -168,6 +179,12 @@ class PsalmMarkup
         r
       end.reverse.join('')
     end.reverse.join(' ') + APPEND[part.pos]
+
+    part_classes =
+      ['verse_part', part_name] +
+      part_short_classes.collect {|i| "short-#{i}" }
+
+    "<span class=\"#{part_classes.join(' ')}\">#{out}</span>"
   end
 end
 
