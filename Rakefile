@@ -2,7 +2,9 @@ require 'json'
 
 require 'dotenv/load'
 
-IAP = IN_ADIUTORIUM_PATH = ENV['IN_ADIUTORIUM_PATH'] || raise('please set environment variable IN_ADIUTORIUM_PATH')
+IAP = IN_ADIUTORIUM_PATH = 'IN_ADIUTORIUM_PATH'.yield_self do |name|
+  ENV[name] || raise("please set environment variable #{name}")
+end
 LILYPOND = ENV['LILYPOND'] || 'lilypond'
 
 def tmpfile(path)
