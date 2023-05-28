@@ -1,15 +1,15 @@
-// syllable styles
+// syllable mixins
 %accent-pointed
   font-weight: bold
 %preparatory-pointed
   font-style: italic
 
-// psalm styles applied always
+// verse part style applied always
 .flex
   .accent-1
     @extend %accent-pointed
 
-// psalm styles
+// verse part mixins
 %accent-1-pointed
   .accent-1
     @extend %accent-pointed
@@ -20,7 +20,6 @@
   .accent-sliding
     @extend %accent-pointed
     text-decoration: underline
-
 
 // TODO: code is repetitive and could be refactored to a few nested cycles
 %preparatory-1-pointed
@@ -33,6 +32,7 @@
   .preparatory-3
     @extend %preparatory-pointed
 
+// classes applied to the whole psalm
 .pointing-first-accents-1
   .first
     @extend %accent-1-pointed
