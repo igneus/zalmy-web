@@ -1,83 +1,83 @@
 // syllable mixins
-%accent-pointed
+%syl-accent-pointed
   font-weight: bold
-%preparatory-pointed
+%syl-preparatory-pointed
   font-style: italic
 
 // verse part style applied always
 .flex
   .accent-1
-    @extend %accent-pointed
+    @extend %syl-accent-pointed
 
 // verse part mixins
-%accent-1-pointed
+%vp-accent-1-pointed
   .accent-1
-    @extend %accent-pointed
-%accent-2-pointed
+    @extend %syl-accent-pointed
+%vp-accent-2-pointed
   .accent-2
-    @extend %accent-pointed
-%accent-sliding-pointed
+    @extend %syl-accent-pointed
+%vp-accent-sliding-pointed
   .accent-sliding
-    @extend %accent-pointed
+    @extend %syl-accent-pointed
     text-decoration: underline
 
 // TODO: code is repetitive and could be refactored to a few nested cycles
-%preparatory-1-pointed
+%vp-preparatory-1-pointed
   .preparatory-1
-    @extend %preparatory-pointed
-%preparatory-2-pointed
+    @extend %syl-preparatory-pointed
+%vp-preparatory-2-pointed
   .preparatory-2
-    @extend %preparatory-pointed
-%preparatory-3-pointed
+    @extend %syl-preparatory-pointed
+%vp-preparatory-3-pointed
   .preparatory-3
-    @extend %preparatory-pointed
+    @extend %syl-preparatory-pointed
 
 // classes applied to the whole psalm
 .pointing-first-accents-1
   .first
-    @extend %accent-1-pointed
+    @extend %vp-accent-1-pointed
 .pointing-first-accents-2
   .first
-    @extend %accent-1-pointed
-    @extend %accent-2-pointed
+    @extend %vp-accent-1-pointed
+    @extend %vp-accent-2-pointed
 .pointing-first-accent-sliding
   .first
-    @extend %accent-sliding-pointed
+    @extend %vp-accent-sliding-pointed
 
 .pointing-first-preparatory-1
   .first
-    @extend %preparatory-1-pointed
+    @extend %vp-preparatory-1-pointed
 .pointing-first-preparatory-2
   .first
-    @extend %preparatory-1-pointed
-    @extend %preparatory-2-pointed
+    @extend %vp-preparatory-1-pointed
+    @extend %vp-preparatory-2-pointed
 .pointing-first-preparatory-3
   .first
-    @extend %preparatory-1-pointed
-    @extend %preparatory-2-pointed
-    @extend %preparatory-3-pointed
+    @extend %vp-preparatory-1-pointed
+    @extend %vp-preparatory-2-pointed
+    @extend %vp-preparatory-3-pointed
 
 
 .pointing-second-accents-1
   .second
-    @extend %accent-1-pointed
+    @extend %vp-accent-1-pointed
 .pointing-second-accents-2
   .second
-    @extend %accent-1-pointed
-    @extend %accent-2-pointed
+    @extend %vp-accent-1-pointed
+    @extend %vp-accent-2-pointed
 .pointing-second-accent-sliding
   .second
-    @extend %accent-sliding-pointed
+    @extend %vp-accent-sliding-pointed
 
 .pointing-second-preparatory-1
   .second
-    @extend %preparatory-1-pointed
+    @extend %vp-preparatory-1-pointed
 .pointing-second-preparatory-2
   .second
-    @extend %preparatory-1-pointed
-    @extend %preparatory-2-pointed
+    @extend %vp-preparatory-1-pointed
+    @extend %vp-preparatory-2-pointed
 .pointing-second-preparatory-3
   .second
-    @extend %preparatory-1-pointed
-    @extend %preparatory-2-pointed
-    @extend %preparatory-3-pointed
+    @extend %vp-preparatory-1-pointed
+    @extend %vp-preparatory-2-pointed
+    @extend %vp-preparatory-3-pointed
