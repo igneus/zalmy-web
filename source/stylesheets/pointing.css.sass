@@ -1,4 +1,5 @@
 // syllable mixins
+
 %syl-accent-pointed
   font-weight: bold
 %syl-preparatory-pointed
@@ -10,74 +11,39 @@
     @extend %syl-accent-pointed
 
 // verse part mixins
-%vp-accent-1-pointed
-  .accent-1
-    @extend %syl-accent-pointed
-%vp-accent-2-pointed
-  .accent-2
-    @extend %syl-accent-pointed
+
+@for $i from 1 through 2
+  %vp-accent-#{$i}-pointed
+    .accent-#{$i}
+      @extend %syl-accent-pointed
+
 %vp-accent-sliding-pointed
   .accent-sliding
     @extend %syl-accent-pointed
     text-decoration: underline
 
-// TODO: code is repetitive and could be refactored to a few nested cycles
-%vp-preparatory-1-pointed
-  .preparatory-1
-    @extend %syl-preparatory-pointed
-%vp-preparatory-2-pointed
-  .preparatory-2
-    @extend %syl-preparatory-pointed
-%vp-preparatory-3-pointed
-  .preparatory-3
-    @extend %syl-preparatory-pointed
+@for $i from 1 through 3
+  %vp-preparatory-#{$i}-pointed
+    .preparatory-#{$i}
+      @extend %syl-preparatory-pointed
 
 // classes applied to the whole psalm
-.pointing-first-accents-1
-  .first
-    @extend %vp-accent-1-pointed
-.pointing-first-accents-2
-  .first
-    @extend %vp-accent-1-pointed
-    @extend %vp-accent-2-pointed
-.pointing-first-accent-sliding
-  .first
-    @extend %vp-accent-sliding-pointed
 
-.pointing-first-preparatory-1
-  .first
-    @extend %vp-preparatory-1-pointed
-.pointing-first-preparatory-2
-  .first
-    @extend %vp-preparatory-1-pointed
-    @extend %vp-preparatory-2-pointed
-.pointing-first-preparatory-3
-  .first
-    @extend %vp-preparatory-1-pointed
-    @extend %vp-preparatory-2-pointed
-    @extend %vp-preparatory-3-pointed
+$verse-parts: first, second
 
+@each $part in $verse-parts
+  @for $i from 1 through 2
+    .pointing-#{$part}-accents-#{$i}
+      .#{$part}
+        @for $j from 1 through $i
+          @extend %vp-accent-#{$j}-pointed
 
-.pointing-second-accents-1
-  .second
-    @extend %vp-accent-1-pointed
-.pointing-second-accents-2
-  .second
-    @extend %vp-accent-1-pointed
-    @extend %vp-accent-2-pointed
-.pointing-second-accent-sliding
-  .second
-    @extend %vp-accent-sliding-pointed
+  .pointing-#{$part}-accent-sliding
+    .#{$part}
+      @extend %vp-accent-sliding-pointed
 
-.pointing-second-preparatory-1
-  .second
-    @extend %vp-preparatory-1-pointed
-.pointing-second-preparatory-2
-  .second
-    @extend %vp-preparatory-1-pointed
-    @extend %vp-preparatory-2-pointed
-.pointing-second-preparatory-3
-  .second
-    @extend %vp-preparatory-1-pointed
-    @extend %vp-preparatory-2-pointed
-    @extend %vp-preparatory-3-pointed
+  @for $i from 1 through 3
+    .pointing-#{$part}-preparatory-#{$i}
+      .#{$part}
+        @for $j from 1 through $i
+          @extend %vp-preparatory-#{$j}-pointed
