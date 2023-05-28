@@ -178,13 +178,13 @@ class PsalmMarkup
         end
         r
       end.reverse.join('')
-    end.reverse.join(' ') + APPEND[part.pos]
+    end.reverse.join(' ')
 
     part_classes =
       ['verse_part', part_name] +
       part_short_classes.collect {|i| "short-#{i}" }
 
-    "<span class=\"#{part_classes.join(' ')}\">#{out}</span>"
+    "<span class=\"#{part_classes.join(' ')}\">#{out}</span>" + APPEND[part.pos]
   end
 end
 
