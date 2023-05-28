@@ -1,4 +1,4 @@
-\version "2.19.22"
+\version "2.22.0"
 
 \header {
   tagline = ##f
@@ -11,7 +11,11 @@
 
   \context {
     \Score
+
     \remove "Bar_number_engraver"
+
+    \override RehearsalMark.direction = #DOWN
+    \override RehearsalMark.color = "darkred"
   }
 
   system-count = 1
@@ -73,6 +77,11 @@ barMaior = {
 }
 barMax = { \bar "|" }
 barFinalis = { \bar "||" }
+
+% Verse part symbols
+
+mFlexa = \markup "†"
+mAsterisk = \markup "*"
 
 % unused variables for compatibility with the In adiutorium code
 

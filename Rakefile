@@ -63,12 +63,14 @@ desc 'psalm tone notation'
 task notated_tones: 'source/images/psalmodie_I-a.svg'
 
 file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tmpfile('psalmodie.ly'), __FILE__] do |t|
-  ruby *t.prerequisites.dup.tap {|pre| pre.insert(1, '--ids', '--prepend-text', '\version "2.19.0"   \include "src/lilypond/psalmtone.ly"') }
+  ruby *t.prerequisites[0..-2].tap {|pre| pre.insert(1, '--ids', '--prepend-text', '\version "2.19.0"   \include "src/lilypond/psalmtone.ly"') }
+
   Dir['build/tmp/*_*.ly'].each do |f|
-    next if f == t.prerequisites.last
+    # add the respective symbol as a mark to each divisio
+    sh 'sed', '-i', 's/\\\\barMin/\\\\mark\\\\mFlexa &/', f
+    sh 'sed', '-i', 's/\\\\barMaior/\\\\mark\\\\mAsterisk &/', f
 
     output = File.join('source', 'images', File.basename(f).sub(/\.ly$/, ''))
-
     sh LILYPOND, '--svg', '-o', output, f
 
     # crop svg
