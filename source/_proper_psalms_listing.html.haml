@@ -1,7 +1,7 @@
 - items.each_pair do |occasion, hours|
   %h3= occasion
   - hours.each_pair do |hour, psalms|
-    %p
+    %p.psalms-list
       %strong= hour
 
       - if psalms.is_a?(String)
