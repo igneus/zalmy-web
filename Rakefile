@@ -19,6 +19,11 @@ def iafiles(*paths)
   paths.collect(&method(:iafile))
 end
 
+# differentiae like "D'" or "G*" are not file-name-friendly
+def normalize_psalm_tone_fname(fname)
+  fname.sub(/[^\w]$/, 'x')
+end
+
 require iafile('nastroje/psalmtone.rb')
 
 
@@ -46,7 +51,7 @@ file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml'), __FILE__] do 
         d = i.quantities
         {
           name: i.diff,
-          image: "/images/psalmodie_#{i.score_id}.svg",
+          image: "/images/psalmodie_#{normalize_psalm_tone_fname(i.score_id)}.svg",
 
           accents: d.second_accents,
           preparatory: d.second_preparatory,
@@ -70,7 +75,7 @@ file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tm
     sh 'sed', '-i', 's/\\\\barMin/\\\\mark\\\\mFlexa &/', f
     sh 'sed', '-i', 's/\\\\barMaior/\\\\mark\\\\mAsterisk &/', f
 
-    output = File.join('source', 'images', File.basename(f).sub(/\.ly$/, ''))
+    output = File.join('source', 'images', normalize_psalm_tone_fname(File.basename(f).sub(/\.ly$/, '')))
     sh LILYPOND, '--svg', '-o', output, f
 
     # crop svg
