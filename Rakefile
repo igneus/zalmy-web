@@ -8,7 +8,7 @@ end
 LILYPOND = ENV['LILYPOND'] || 'lilypond'
 
 def tmpfile(path)
-  File.join 'build', 'tmp', path
+  File.join 'tmp', path
 end
 
 def iafile(path)
@@ -65,7 +65,7 @@ task notated_tones: 'source/images/psalmodie_I-a.svg'
 file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tmpfile('psalmodie.ly'), __FILE__] do |t|
   ruby *t.prerequisites[0..-2].tap {|pre| pre.insert(1, '--ids', '--prepend-text', '\version "2.19.0"   \include "src/lilypond/psalmtone.ly"') }
 
-  Dir['build/tmp/*_*.ly'].each do |f|
+  Dir[tmpfile('*_*.ly')].each do |f|
     # add the respective symbol as a mark to each divisio
     sh 'sed', '-i', 's/\\\\barMin/\\\\mark\\\\mFlexa &/', f
     sh 'sed', '-i', 's/\\\\barMaior/\\\\mark\\\\mAsterisk &/', f
@@ -81,6 +81,7 @@ file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tm
 end
 
 file tmpfile('psalmodie.ly') => iafiles('nastroje/psalmtone.rb', 'psalmodie/zakladni.yml') do |t|
+  FileUtils.mkdir_p 'tmp'
   sh "ruby #{t.prerequisites[0]} #{t.prerequisites[1]} > #{t.name}"
 end
 

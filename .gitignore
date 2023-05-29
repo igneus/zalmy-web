@@ -3,3 +3,4 @@ data/psalm_tones.json
 source/images/psalmodie_*.svg
 .env
 build/
+tmp/
