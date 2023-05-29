@@ -24,5 +24,9 @@ This is a static website built using [Middleman][middleman].
 `$ bundle exec rake server` builds dependencies (those not managed
 by Middleman) and starts local development server.
 
+## License
+
+GNU GPLv3
+
 [ia]: https://github.com/igneus/In-adiutorium
 [middleman]: https://middlemanapp.com/
