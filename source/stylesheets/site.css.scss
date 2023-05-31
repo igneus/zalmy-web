@@ -49,9 +49,6 @@ a {
 .psalm {
   .strophe {
     margin-bottom: 0.6em;
-    .verse:last-child {
-      .verse_part:last-child::after { @extend %rubric; content: " —"; }
-    }
   }
   .verse { padding-left: 1em; text-indent: -1em; }
   .verse:first-line { text-indent: 0; }

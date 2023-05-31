@@ -113,7 +113,8 @@ class PsalmMarkup
               div.verse do
                 v.parts
                   .collect {|vp| vpm.(vp.pos, vp) }
-                  .join("\n")
+                  .join("\n") +
+                  (v == s.verses.last ? ' <span class="r">—</span>' : '')
               end
             end
           end
