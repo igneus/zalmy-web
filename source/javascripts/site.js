@@ -41,17 +41,14 @@ const setPointing = (link) => {
 
   qsa('.flex .accent-1').forEach(pointAccent);
 
-  qsa(selectorRange('.first .accent-{}', parseInt(ds.firstAccents))).forEach(pointAccent);
-  qsa(selectorRange('.first .preparatory-{}', parseInt(ds.firstPreparatory))).forEach(pointPreparatory);
-  if (ds.firstSliding) {
-    qsa('.first .accent-sliding').forEach(pointSlidingAccent);
-  }
-
-  qsa(selectorRange('.second .accent-{}', parseInt(ds.secondAccents))).forEach(pointAccent);
-  qsa(selectorRange('.second .preparatory-{}', parseInt(ds.secondPreparatory))).forEach(pointPreparatory);
-  if (ds.secondSliding) {
-    qsa('.second .accent-sliding').forEach(pointSlidingAccent);
-  }
+  const verseParts = ['first', 'second'];
+  verseParts.forEach(vp => {
+    qsa(selectorRange(`.${vp} .accent-{}`, parseInt(ds[`${vp}Accents`]))).forEach(pointAccent);
+    qsa(selectorRange(`.${vp} .preparatory-{}`, parseInt(ds[`${vp}Preparatory`]))).forEach(pointPreparatory);
+    if (ds[`${vp}Sliding`]) {
+      qsa(`.${vp} .accent-sliding`).forEach(pointSlidingAccent);
+    }
+  });
 };
 
 const markSelected = (link) => {
