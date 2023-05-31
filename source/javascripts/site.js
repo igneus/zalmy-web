@@ -41,6 +41,8 @@ const setPointing = (link) => {
 
   qsa('.flex .accent-1').forEach(pointAccent);
 
+  let classes = ['psalm'];
+
   const verseParts = ['first', 'second'];
   verseParts.forEach(vp => {
     qsa(selectorRange(`.${vp} .accent-{}`, parseInt(ds[`${vp}Accents`]))).forEach(pointAccent);
@@ -48,7 +50,12 @@ const setPointing = (link) => {
     if (ds[`${vp}Sliding`]) {
       qsa(`.${vp} .accent-sliding`).forEach(pointSlidingAccent);
     }
+
+    classes.push(`pointing-${vp}-accents-` + ds[`${vp}Accents`]);
+    classes.push(`pointing-${vp}-preparatory-` + ds[`${vp}Preparatory`]);
   });
+
+  document.querySelector('.psalm').setAttribute('class', classes.join(' '));
 };
 
 const markSelected = (link) => {
