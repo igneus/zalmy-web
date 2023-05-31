@@ -2,22 +2,48 @@ const setNotation = (link) => {
   document.querySelector('#notation').setAttribute('src', link.dataset.image);
 };
 
+const unpoint =
+      (node) => node.style = null;
+const pointAccent =
+      (node) => node.style = 'font-weight: bold;';
+const pointSlidingAccent =
+      (node) => node.style = 'font-weight: bold; text-decoration: underline;';
+const pointPreparatory =
+      (node) => node.style = 'font-style: italic';
+
+const qsa =
+      (selector) => selector == '' ? [] : document.querySelectorAll(selector);
+
+const selectorRange = (template, iEnd) => {
+  let r = [];
+  for (var i = 1; i <= iEnd; i++) {
+    r.push(template.replace('{}', i));
+  }
+  return r.join(', ');
+};
+
 const setPointing = (link) => {
   const ds = link.dataset;
 
-  let classes = ['psalm'];
-  classes.push('pointing-first-accents-' + ds.firstAccents);
-  classes.push('pointing-first-preparatory-' + ds.firstPreparatory);
+  [
+    qsa(selectorRange('.accent-{}', 2)),
+    qsa('.accent-sliding'),
+    qsa(selectorRange('.preparatory-{}', 3))
+  ].forEach(list => list.forEach(unpoint));
+
+  qsa('.flex .accent-1').forEach(pointAccent);
+
+  qsa(selectorRange('.first .accent-{}', parseInt(ds.firstAccents))).forEach(pointAccent);
+  qsa(selectorRange('.first .preparatory-{}', parseInt(ds.firstPreparatory))).forEach(pointPreparatory);
   if (ds.firstSliding) {
-    classes.push('pointing-first-accent-sliding');
-  }
-  classes.push('pointing-second-accents-' + ds.secondAccents);
-  classes.push('pointing-second-preparatory-' + ds.secondPreparatory);
-  if (ds.secondSliding) {
-    classes.push('pointing-second-accent-sliding');
+    qsa('.first .accent-sliding').forEach(pointSlidingAccent);
   }
 
-  document.querySelector('.psalm').setAttribute('class', classes.join(' '));
+  qsa(selectorRange('.second .accent-{}', parseInt(ds.secondAccents))).forEach(pointAccent);
+  qsa(selectorRange('.second .preparatory-{}', parseInt(ds.secondPreparatory))).forEach(pointPreparatory);
+  if (ds.secondSliding) {
+    qsa('.second .accent-sliding').forEach(pointSlidingAccent);
+  }
 };
 
 const markSelected = (link) => {
