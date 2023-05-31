@@ -1,15 +1,6 @@
-const setNotation = (link) => {
-  document.querySelector('#notation').setAttribute('src', link.dataset.image);
-};
+// general utility functions
 
-const unpoint =
-      (node) => node.style = null;
-const pointAccent =
-      (node) => node.style = 'font-weight: bold;';
-const pointSlidingAccent =
-      (node) => node.style = 'font-weight: bold; text-decoration: underline;';
-const pointPreparatory =
-      (node) => node.style = 'font-style: italic';
+const randomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const qsa =
       (selector) => selector == '' ? [] : document.querySelectorAll(selector);
@@ -20,6 +11,23 @@ const selectorRange = (template, iEnd) => {
     r.push(template.replace('{}', i));
   }
   return r.join(', ');
+};
+
+// pointing
+
+const unpoint =
+      (node) => node.style = null;
+const pointAccent =
+      (node) => node.style = 'font-weight: bold;';
+const pointSlidingAccent =
+      (node) => node.style = 'font-weight: bold; text-decoration: underline;';
+const pointPreparatory =
+      (node) => node.style = 'font-style: italic';
+
+// main UI actions
+
+const setNotation = (link) => {
+  document.querySelector('#notation').setAttribute('src', link.dataset.image);
 };
 
 const setPointing = (link) => {
@@ -71,8 +79,6 @@ const selectInitialPsalmTone = (pointingLinks) => {
     pointingLink.click();
   }
 };
-
-const randomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 window.onload = () => {
   const pointingLinks = document.querySelectorAll('.psalm-tone-selector a');
