@@ -260,6 +260,10 @@ helpers do
   def in_adiutorium_sheet_link(sheet_symbol)
     "http://www.inadiutorium.cz/noty##{sheet_symbol}"
   end
+
+  def zj19_tone_link
+    partial 'proper_tone_link', locals: {name: 'srov. Zj 19', link: in_adiutorium_sheet_link('kantZj19')}
+  end
 end
 
 # Build-specific configuration

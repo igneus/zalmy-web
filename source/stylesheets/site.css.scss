@@ -55,7 +55,9 @@ a {
 }
 
 .psalms-list {
-  a { display: inline-block; margin: 0 0.2em; }
+  & > a,
+  & > em,
+  & > span { display: inline-block; margin: 0 0.2em; }
 }
 
 @media print {
