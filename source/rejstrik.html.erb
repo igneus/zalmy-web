@@ -26,13 +26,19 @@ title: Rejstřík
 <h2>Žalmy</h2>
 <ul>
   <% pss.each do |ps| %>
-  <li><%= psalm_link ps %></li>
+  <li>
+    <%= psalm_link ps %>
+    <%= ps.incipit %>
+  </li>
   <% end %>
 </ul>
 
 <h2>Kantika</h2>
 <ul>
   <% canticles.each do |ps| %>
-  <li><%= psalm_link ps %></li>
+  <li>
+    <%= psalm_link ps %>
+    <%= ps.incipit %>
+  </li>
   <% end %>
 </ul>

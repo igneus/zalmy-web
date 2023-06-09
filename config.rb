@@ -42,7 +42,7 @@ module Psalms
   ].freeze
   BIBLE_BOOK_RE = Regexp.new BIBLE_BOOKS.join('|')
 
-  Psalm = Struct.new(:title, :path, :path_name, :is_canticle) do
+  Psalm = Struct.new(:title, :path, :path_name, :is_canticle, :incipit) do
     def web_path
       "/#{is_canticle ? 'kantikum' : 'zalm'}/#{path_name.sub(/zalm|kantikum_/, '')}.html"
     end
@@ -60,11 +60,22 @@ module Psalms
         Dir[File.join(IN_ADIUTORIUM_PATH, 'antifonar', 'zalmy', '*.zalm')]
           .reject {|i| i =~ /doxologie|responsorialni|pascha|tedeum/ }
           .collect do |i|
+          parsed = reader.read_str(File.read(i))
+
           Psalm.new(
-            reader.read_str(File.read(i)).header.title,
+            parsed.header.title,
             i,
             File.basename(i).sub(/\.zalm$/, ''),
-            File.basename(i).start_with?('kantikum')
+            File.basename(i).start_with?('kantikum'),
+            parsed
+              .verses[0]
+              .parts[0]
+              .words
+              .collect {|w| w.syllables.join '' }
+              .join(' ')
+              .strip
+              .gsub('"', '')
+              .sub(/[,;:.]$/, '')
           )
         end
           .sort_by(&:sort_key)
