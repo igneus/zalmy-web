@@ -16,8 +16,8 @@
             ' Z
             a href="/zaltar.html#t#{$2}#{$1}"
               = {'ne' => 'neděle', 'ut' => 'úterý', 'pa' => 'pátku'}[$1]
-              = "#{$2}."
-              týdne žaltáře
+              =<> "#{$2}."
+              | týdne žaltáře
         - else
           - raise "unexpected #{psalms.inspect}"
         - next
