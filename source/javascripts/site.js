@@ -41,7 +41,10 @@ const setPointing = (link) => {
 
   qsa('.flex .accent-1').forEach(pointAccent);
 
-  let classes = ['psalm'];
+  const psalm = document.querySelector('.psalm');
+  let classes =
+      Array.from(psalm.classList)
+      .filter((cls) => !cls.startsWith('pointing-'));
 
   const verseParts = ['first', 'second'];
   verseParts.forEach(vp => {
@@ -55,7 +58,7 @@ const setPointing = (link) => {
     classes.push(`pointing-${vp}-preparatory-` + ds[`${vp}Preparatory`]);
   });
 
-  document.querySelector('.psalm').setAttribute('class', classes.join(' '));
+  psalm.setAttribute('class', classes.join(' '));
 };
 
 const markSelected = (link) => {
@@ -84,6 +87,13 @@ const selectPsalmToneByUrlHash = (pointingLinks) => {
   }
 };
 
+const setVersePartNewlines =
+      (checkbox) =>
+      document.querySelector('.psalm')
+      .classList[checkbox.checked ? 'add' : 'remove'](
+        'verse-part-newlines'
+      );
+
 window.onload = () => {
   const pointingLinks = document.querySelectorAll('.psalm-tone-selector a');
   if (pointingLinks.length == 0) {
@@ -100,6 +110,10 @@ window.onload = () => {
   });
 
   selectPsalmToneByUrlHash(pointingLinks);
+
+  const newlinesCheckbox = document.getElementById('newlines');
+  newlinesCheckbox.addEventListener('change', (event) => setVersePartNewlines(event.target));
+  setVersePartNewlines(newlinesCheckbox);
 };
 
 window.onhashchange = selectPsalmToneByUrlHash;

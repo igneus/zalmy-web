@@ -51,8 +51,30 @@ a {
   .strophe {
     margin-bottom: 0.6em;
   }
+
   .verse { padding-left: 1em; text-indent: -1em; }
   .verse:first-line { text-indent: 0; }
+
+  &.verse-part-newlines {
+    .verse, .verse:first-line { padding-left: 0; text-indent: 0; }
+
+    .verse_part {
+      display: block;
+
+      padding-left: 1em; text-indent: -1em;
+      &:first-line { text-indent: 0; }
+
+      margin-left: 1em;
+      &:first-child {
+        margin-left: 0;
+
+        // make hanging indentation in the first verse part larger
+        // in order to avoid confusion between next verse part
+        // and continuation line of the first one
+        padding-left: 2em; text-indent: -2em;
+      }
+    }
+  }
 }
 
 .psalms-list {

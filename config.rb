@@ -197,7 +197,11 @@ class PsalmMarkup
       ['verse_part', part_name] +
       part_short_classes.collect {|i| "short-#{i}" }
 
-    "<span class=\"#{part_classes.join(' ')}\">#{out}</span>" + APPEND[part.pos]
+    "<span class=\"#{part_classes.join(' ')}\"><span class=\"verse_part_content\">" +
+      out +
+      '</span>' +
+      APPEND[part.pos] +
+      '</span>'
   end
 end
 
