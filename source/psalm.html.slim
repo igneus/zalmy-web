@@ -7,7 +7,7 @@ h1= psalm.title
         = partial 'tone_link', locals: {tone: tone, diff: tone['differentiae'][0]} do
           strong= tone['name']
       - else
-        strong= tone['name']
+        strong=> tone['name']
         - tone['differentiae'].each do |diff|
           = partial 'tone_link', locals: {tone: tone, diff: diff} do
             = diff['name']
