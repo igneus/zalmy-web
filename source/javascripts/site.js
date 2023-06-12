@@ -65,7 +65,7 @@ const markSelected = (link) => {
   link.parentElement.classList.add(cls);
 };
 
-const selectInitialPsalmTone = (pointingLinks) => {
+const selectPsalmToneByUrlHash = (pointingLinks) => {
   const hash = window.location.hash;
   const tone = decodeURIComponent(hash).substr(2)
   const parts = tone.split(':');
@@ -99,5 +99,7 @@ window.onload = () => {
     });
   });
 
-  selectInitialPsalmTone(pointingLinks);
+  selectPsalmToneByUrlHash(pointingLinks);
 };
+
+window.onhashchange = selectPsalmToneByUrlHash;
