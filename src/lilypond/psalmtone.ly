@@ -1,3 +1,5 @@
+% -*- master: ../../tmp/psalmodie.ly;
+
 \version "2.22.0"
 
 \header {
