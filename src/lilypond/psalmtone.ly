@@ -51,7 +51,7 @@ choralniRezim = {
   \override Score.TimeSignature.stencil = ##f
 
   % noty bez nozicek
-  \override Stem.transparent = ##t
+  \override Stem.length = #0
 
   % nedelat taktove cary
   \cadenzaOn
@@ -62,9 +62,10 @@ choralniRezim = {
 
 choralniRezimPsalmodie = {
   \choralniRezim
-  \stemDown
   \slurDown
   \override Score.BarLine.extra-spacing-width = #'(-2 . 2)
+
+  \stemDown % stems are neutralized, but this still affects horizontal position of the accent signs above notes
 }
 
 % Divisiones
