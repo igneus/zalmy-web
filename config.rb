@@ -123,9 +123,8 @@ class PsalmMarkup
             s.verses.each do |v|
               div.verse do
                 v.parts
-                  .collect {|vp| vpm.(vp.pos, vp) }
-                  .join("\n") +
-                  (v == s.verses.last ? ' <span class="r">—</span>' : '')
+                  .collect {|vp| vpm.(vp.pos, vp, v == s.verses.last && vp == v.parts.last) }
+                  .join("\n")
               end
             end
           end
@@ -140,7 +139,7 @@ class PsalmMarkup
     second: ''
   }
 
-  def verse_part_markup(part_name, part)
+  def verse_part_markup(part_name, part, is_strophe_end=false)
     accent_i = 0
     before_last_accent = 0
     si = 0
@@ -201,6 +200,7 @@ class PsalmMarkup
       out +
       '</span>' +
       APPEND[part.pos] +
+      (is_strophe_end ? ' <span class="r">—</span>' : '') +
       '</span>'
   end
 end
