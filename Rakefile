@@ -76,7 +76,7 @@ file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tm
     sh 'sed', '-i', 's/\\\\barMaior/\\\\mark\\\\mAsterisk &/', f
 
     output = File.join('source', 'images', normalize_psalm_tone_fname(File.basename(f).sub(/\.ly$/, '')))
-    sh LILYPOND, '--svg', '-o', output, f
+    sh LILYPOND, '-dno-point-and-click', '--svg', '-o', output, f
 
     # crop svg
     sh 'inkscape',
