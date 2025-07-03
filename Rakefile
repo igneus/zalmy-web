@@ -11,6 +11,7 @@ def tmpfile(path)
   File.join 'tmp', path
 end
 
+# expand path relative to the In adiutorium sources root to an absolute path
 def iafile(path)
   File.join IN_ADIUTORIUM_PATH, path
 end
