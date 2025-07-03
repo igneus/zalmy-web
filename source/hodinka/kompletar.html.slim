@@ -1,0 +1,13 @@
+---
+title: Modlitba před spaním
+---
+
+h1 Modlitba před spaním
+
+- %w(4 91).each do |num|
+  = partial 'psalm', locals: {psalm: psalms["zalm#{num}"]}
+
+= partial 'psalm', locals: {psalm: psalms['kantikum_nuncdimittis']}
+
+- content_for :footer do
+  = partial 'settings'

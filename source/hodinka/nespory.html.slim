@@ -1,0 +1,14 @@
+---
+title: Nešpory
+---
+
+h1 Nešpory
+
+- %w(141 142).each do |num|
+  = partial 'psalm', locals: {psalm: psalms["zalm#{num}"]}
+= partial 'psalm', locals: {psalm: psalms['kantikum_flp2']}
+
+= partial 'psalm', locals: {psalm: psalms['kantikum_magnificat']}
+
+- content_for :footer do
+  = partial 'settings'

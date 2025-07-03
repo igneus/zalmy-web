@@ -2,9 +2,6 @@
 
 const randomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-const qsa =
-      (selector) => selector == '' ? [] : document.querySelectorAll(selector);
-
 const selectorRange = (template, iEnd) => {
   let r = [];
   for (var i = 1; i <= iEnd; i++) {
@@ -26,12 +23,18 @@ const pointPreparatory =
 
 // main UI actions
 
+// find a .psalm-wrapper relative to the specified pointing link.
+const wrapperForLink = (link) => link.parentElement.parentElement.parentElement;
+
 const setNotation = (link) => {
-  document.querySelector('#notation').setAttribute('src', link.dataset.image);
+  wrapperForLink(link).querySelector('.notation').setAttribute('src', link.dataset.image);
 };
 
 const setPointing = (link) => {
   const ds = link.dataset;
+  const wrapper = wrapperForLink(link);
+  const qsa =
+        (selector) => selector == '' ? [] : wrapper.querySelectorAll(selector);
 
   [
     qsa(selectorRange('.accent-{}', 2)),
@@ -41,7 +44,7 @@ const setPointing = (link) => {
 
   qsa('.flex .accent-1').forEach(pointAccent);
 
-  const psalm = document.querySelector('.psalm');
+  const psalm = wrapper.querySelector('.psalm');
   let classes =
       Array.from(psalm.classList)
       .filter((cls) => !cls.startsWith('pointing-'));
@@ -63,12 +66,17 @@ const setPointing = (link) => {
 
 const markSelected = (link) => {
   const cls = 'selected';
-  document.querySelectorAll('.'+cls).forEach(i => i.classList.remove(cls));
+  wrapperForLink(link).querySelectorAll('.'+cls).forEach(i => i.classList.remove(cls));
   link.classList.add(cls);
   link.parentElement.classList.add(cls);
 };
 
 const selectPsalmToneByUrlHash = (pointingLinks) => {
+  if (document.querySelectorAll('.psalm').length > 1) {
+    // TODO support the hash also for multi-psalm pages
+    return;
+  }
+
   const hash = window.location.hash;
   const tone = decodeURIComponent(hash).substr(2)
   const parts = tone.split(':');
