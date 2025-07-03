@@ -13,7 +13,7 @@ and tools of the [In adiutorium][ia] project.
 ## Building
 
 - get [In adiutorium][ia] sources: `$ git clone https://github.com/igneus/In-adiutorium.git`
-- set required paths in configuration - either copy `.env.template` to `.env` and edit as specified there, or use another way to set the same environment variable(s)
+- set required paths in configuration - either copy `.env.template` to `.env` and edit as specified there, or use another way to set the same environment variables
 - `$ bundle install`
 - `$ bundle exec rake`
 
