@@ -50,6 +50,9 @@ choralniRezim = {
   % nepsat predznamenani tempa (neni tempo)
   \override Score.TimeSignature.stencil = ##f
 
+  % breve hranate
+  \override Staff.NoteHead.style = #'baroque
+
   % noty bez nozicek
   \override Stem.length = #0
 
