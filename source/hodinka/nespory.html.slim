@@ -4,9 +4,13 @@ title: Nešpory
 
 h1 Nešpory
 
+h2.hour-section Žalmy
+
 - %w(141 142).each do |num|
   = partial 'psalm', locals: {psalm: psalms["zalm#{num}"]}
 = partial 'psalm', locals: {psalm: psalms['kantikum_flp2']}
+
+h2.hour-section Kantikum Panny Marie
 
 = partial 'psalm', locals: {psalm: psalms['kantikum_magnificat']}
 

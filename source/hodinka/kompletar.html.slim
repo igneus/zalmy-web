@@ -4,8 +4,12 @@ title: Modlitba před spaním
 
 h1 Modlitba před spaním
 
+h2.hour-section Žalmy
+
 - %w(4 91).each do |num|
   = partial 'psalm', locals: {psalm: psalms["zalm#{num}"]}
+
+h2.hour-section Simeonovo kantikum
 
 = partial 'psalm', locals: {psalm: psalms['kantikum_nuncdimittis']}
 
