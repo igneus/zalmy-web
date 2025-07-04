@@ -43,8 +43,13 @@ module Psalms
   BIBLE_BOOK_RE = Regexp.new BIBLE_BOOKS.join('|')
 
   Psalm = Struct.new(:title, :path, :path_name, :is_canticle, :incipit) do
+    # psalm/canticle path used in the data-path attribute and in URL hash
+    def data_path
+      "#{is_canticle ? 'kantikum' : 'zalm'}/#{path_name.sub(/zalm|kantikum_/, '')}"
+    end
+
     def web_path
-      "/#{is_canticle ? 'kantikum' : 'zalm'}/#{path_name.sub(/zalm|kantikum_/, '')}.html"
+      "/#{data_path}.html"
     end
 
     def sort_key
@@ -93,32 +98,44 @@ module Psalms
 end
 
 class PsalmMarkup
-  def self.call(path)
-    STDERR.puts "pointing #{path}"
-    new(Pslm::PslmReader.new.read_str(
-          File.read(path).strip
-            .gsub('\zalmVersUpozorneni{2}', '').gsub('\textit{', '').gsub('}', '') + # hardcoded LaTeX markup in Benedictus
-          if File.basename(path) =~ /dan3iii/
-            ''
-          else
-            "\n" +
-              File.read(File.join(File.dirname(path), 'doxologie.zalm'))
-          end
-        )).call
+  def self.call(psalm)
+    new(psalm).call
   end
 
   def initialize(psalm)
     @psalm = psalm
+
+    path = psalm.path
+    STDERR.puts "pointing #{path}"
+
+    doxology =
+      if File.basename(path) =~ /dan3iii/
+        ''
+      else
+        "\n" + File.read(File.join(File.dirname(path), 'doxologie.zalm'))
+      end
+
+    @pslm_parsed = Pslm::PslmReader.new.read_str(
+      File.read(path)
+        .strip
+        .gsub('\zalmVersUpozorneni{2}', '') # get rid of hardcoded LaTeX markup in Benedictus
+        .gsub('\textit{', '')
+        .gsub('}', '') +
+      doxology
+    )
   end
 
   def call
-    psalm = @psalm
-
     vpm = method(:verse_part_markup)
 
+    # because instance variables from the outside are not visible
+    # from within the Markaby DSL
+    psalm = @psalm
+    pslm_parsed = @pslm_parsed
+
     Markaby::Builder.new do
-      div.psalm do
-        psalm.strophes.each do |s|
+      div.psalm('data-path': psalm.data_path) do
+        pslm_parsed.strophes.each do |s|
           div.strophe do
             s.verses.each do |v|
               div.verse do
@@ -263,7 +280,7 @@ helpers do
   end
 
   def psalm_markup(psalm)
-    PsalmMarkup.(psalm.path)
+    PsalmMarkup.(psalm)
   end
 
   def psalm_link(ps)

@@ -62,6 +62,9 @@ const setPointing = (link) => {
   });
 
   psalm.setAttribute('class', classes.join(' '));
+
+  psalm.dataset.tone = ds.tone;
+  psalm.dataset.differentia = ds.differentia;
 };
 
 const markSelected = (link) => {
@@ -71,29 +74,65 @@ const markSelected = (link) => {
   link.parentElement.classList.add(cls);
 };
 
-const selectPsalmToneByUrlHash = (pointingLinks) => {
-  if (document.querySelectorAll('.psalm').length > 1) {
-    // TODO support the hash also for multi-psalm pages
-    return;
-  }
+/* URL hash handling strategies govern hash update when a pointing link
+   is clicked and applying settings from the URL hash to the page content
+   when the hash is changed.
 
-  const hash = window.location.hash;
-  const tone = decodeURIComponent(hash).substr(2)
-  const parts = tone.split(':');
-  const pointingLink = document.querySelector('a[data-tone="' + parts[0] + '"][data-differentia = "' + parts[1] + '"]');
+   There are two kinds of pages:
+   1. page with a single psalm/canticle, containing everything in static HTML
+   2. page with multiple psalms/canticles, loading psalms and canticles
+   via AJAX according to a specification in the URL hash
+*/
 
-  if (pointingLink == null) {
-    if (hash.length > 0) {
-      console.log('Psalm tone "' + tone + '" not found.')
+const singlePsalmPage = {
+  // no need to do anything, the plain HTML link changes URL hash as needed
+  onLinkClick: (event) => {},
+
+  // hash contains single psalm tone and differentia, e.g. "#!VIII:G"
+  onHashChange: () => {
+    const hash = window.location.hash;
+    const tone = decodeURIComponent(hash).substr(2)
+    const parts = tone.split(':');
+    const pointingLink = document.querySelector('a[data-tone="' + parts[0] + '"][data-differentia = "' + parts[1] + '"]');
+    const allPointingLinks = document.querySelectorAll('.psalm-tone-selector a');
+
+    if (pointingLink == null) {
+      if (hash.length > 0) {
+        console.log('Psalm tone "' + tone + '" not found.')
+      }
+
+      randomElement(
+        Array.from(allPointingLinks).filter((link) => !link.dataset.differentia.endsWith('*'))
+      ).click();
+    } else {
+      pointingLink.click();
     }
-
-    randomElement(
-      Array.from(pointingLinks).filter((link) => !link.dataset.differentia.endsWith('*'))
-    ).click();
-  } else {
-    pointingLink.click();
-  }
+  },
 };
+
+const multiplePsalmsPage = {
+  // the clicked link's href contains just a psalm tone,
+  // we intercept URL fragment update to keep account of all psalms on the page
+  onLinkClick: (event) => {
+    event.preventDefault();
+    window.location.hash = '#!' +
+      Array.from(document.querySelectorAll('.psalm')).map((ps) => {
+        const ds = ps.dataset;
+        return [ds.path, ds.tone, ds.differentia].join(':');
+      }).join(';')
+  },
+
+  // hash contains a list of one or more psalms/canticles and corresponding
+  // psalm tones
+  // e.g. "#!zalm/110:VIII:G;kantikum/magnificat:VII:a"
+  onHashChange: () => {
+    // match hash entries to DOM nodes
+
+    // for each psalm: load if necessary, apply psalm tone
+  },
+};
+
+// settings UI actions
 
 const setVersePartNewlines =
       (checkbox) =>
@@ -103,6 +142,8 @@ const setVersePartNewlines =
         )
       );
 
+// main
+
 window.onload = () => {
   const pointingLinks = document.querySelectorAll('.psalm-tone-selector a');
   if (pointingLinks.length == 0) {
@@ -110,19 +151,22 @@ window.onload = () => {
     return;
   }
 
+  const urlHashStrategy =
+        document.querySelectorAll('.psalm').length > 1 ? multiplePsalmsPage : singlePsalmPage;
+
   pointingLinks.forEach(el => {
     el.addEventListener('click', (event) => {
       setNotation(el);
       setPointing(el);
       markSelected(el);
+      urlHashStrategy.onLinkClick(event);
     });
   });
 
-  selectPsalmToneByUrlHash(pointingLinks);
+  urlHashStrategy.onHashChange(); // apply the initial hash contents
+  window.onhashchange = urlHashStrategy.onHashChange;
 
   const newlinesCheckbox = document.getElementById('newlines');
   newlinesCheckbox.addEventListener('change', (event) => setVersePartNewlines(event.target));
   setVersePartNewlines(newlinesCheckbox);
 };
-
-window.onhashchange = selectPsalmToneByUrlHash;
