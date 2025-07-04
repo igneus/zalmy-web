@@ -296,6 +296,46 @@ helpers do
   def zj19_tone_link
     partial 'proper_tone_link', locals: {name: 'srov. Zj 19', link: in_adiutorium_sheet_link('kantZj19')}
   end
+
+  def hour_link(label, psalms)
+    page =
+      case label
+      when /nešpory/
+        'nespory'
+      when /ranní/
+        'ranni'
+      when /uprostřed/
+        'uprostred'
+      else
+        'cteni'
+      end
+
+    if psalms == 'rchne1t'
+      psalms = ['63', 'dan3iii', '149']
+    end
+
+    unless psalms.is_a? Array
+      # rubric, no hour link
+      return label
+    end
+
+    psalms_hash = psalms.collect do |i|
+      path_name =
+        case i.to_s # TODO partial duplicate of code block from _proper_psalms_listing.html.slim
+        when '1tim3', 'zj19'
+        # TODO
+        when /^\d+(?!kron|sam|petr)/
+          "zalm#{i}"
+        when /^\((.*?)\)$/
+        # rubric, not a psalm
+        else
+          "kantikum_#{i}"
+        end
+      (path_name ? Psalms[path_name].data_path : '') + '::'
+    end.join(';')
+
+    link_to label, "hodinka/#{page}.html#!" + psalms_hash
+  end
 end
 
 # Build-specific configuration

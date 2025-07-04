@@ -94,14 +94,14 @@ const singlePsalmPage = {
   // hash contains single psalm tone and differentia, e.g. "#!VIII:G"
   onHashChange: () => {
     const hash = window.location.hash;
-    const tone = decodeURIComponent(hash).substr(2)
-    const parts = tone.split(':');
-    const pointingLink = document.querySelector('a[data-tone="' + parts[0] + '"][data-differentia = "' + parts[1] + '"]');
+    const tones = parseHash(hash);
+    const tone = tones.length > 0 ? tones[0] : {};
+    const pointingLink = document.querySelector('a[data-tone="' + tone.tone + '"][data-differentia = "' + tone.differentia + '"]');
     const allPointingLinks = document.querySelectorAll('.psalm-tone-selector a');
 
     if (pointingLink == null) {
       if (hash.length > 0) {
-        console.log('Psalm tone "' + tone + '" not found.')
+        console.log(`Psalm tone "${tone.name}" not found.`)
       }
 
       randomElement(
@@ -129,10 +129,53 @@ const multiplePsalmsPage = {
   // psalm tones
   // e.g. "#!zalm/110:VIII:G;kantikum/magnificat:VII:a"
   onHashChange: () => {
+    const hash = window.location.hash;
+    const psalms = parseHash(hash);
+
     // match hash entries to DOM nodes
+    Array.from(document.querySelectorAll('.psalm')).map((node, i) => {
+      const entry = psalms[i];
+      if (node.dataset.path != entry.psalm) {
+        // TODO check paths against a whitelist
+
+        $.ajax({
+          url: `/${entry.psalm}.html`,
+          error: () => { $(node).replaceWith(`<p class="error">Žalm/kantikum se nepodařilo stáhnout (${entry.psalm})</p>`) },
+          success: (data) => {
+            $(node).replaceWith($('.psalm', $(data)));
+
+            // TODO apply psalm tone
+          }
+        });
+      } else {
+        // TODO apply psalm tone
+      }
+    })
 
     // for each psalm: load if necessary, apply psalm tone
   },
+};
+
+// functions used by hash handling strategies
+
+// parses URL hash (both the single-psalm and multiple-psalms form),
+// returns an array of objects
+const parseHash = (hash) => {
+  const props = ['psalm', 'tone', 'differentia'];
+
+  return decodeURIComponent(hash)
+    .substr(2)
+    .split(';')
+    .map((str) => {
+      let r = {};
+      const parts = str.split(':');
+      for (let i = 1; i <= Math.min(parts.length, props.length); i++) {
+        r[props[props.length - i]] = parts[parts.length - i];
+      }
+      r.name = `${r.tone}.${r.differentia}`;
+
+      return r;
+    });
 };
 
 // settings UI actions
@@ -166,7 +209,7 @@ window.onload = () => {
     });
   });
 
-  urlHashStrategy.onHashChange(); // apply the initial hash contents
+  urlHashStrategy.onHashChange(); // apply initial hash contents
   window.onhashchange = urlHashStrategy.onHashChange;
 
   const newlinesCheckbox = document.getElementById('newlines');

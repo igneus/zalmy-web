@@ -1,4 +1,5 @@
-%rubric { color: darkred; }
+$rubric-color: darkred;
+%rubric { color: $rubric-color; }
 $text-color: #333;
 
 body {
@@ -82,6 +83,12 @@ a {
   & > a,
   & > em,
   & > span { display: inline-block; margin: 0 0.2em; }
+}
+
+.error {
+  padding: 1em;
+  color: $rubric-color;
+  border: 1px solid $rubric-color; border-radius: 5px;
 }
 
 @media print {
