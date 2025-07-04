@@ -26,6 +26,9 @@
     \consists "Horizontal_bracket_engraver"
     \override HorizontalBracket.direction = #UP
     \override HorizontalBracket.bracket-flare = #'(0.0 . 0.0)
+
+    \override Script.rotation = #'(-25 0 -0.5)
+    \override HorizontalBracketText.rotation = #'(-25 0 -0.5)
   }
 }
 
