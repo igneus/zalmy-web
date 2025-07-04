@@ -136,7 +136,10 @@ const multiplePsalmsPage = {
     Array.from(document.querySelectorAll('.psalm')).map((node, i) => {
       const entry = psalms[i];
       if (node.dataset.path != entry.psalm) {
-        // TODO check paths against a whitelist
+        if (!isValidPsalmPath(entry.psalm)) {
+          $(node).replaceWith('<p class="error">URL obsahuje neplatnou referenci na žalm, žalm nebylo možné načíst</p>');
+          return;
+        }
 
         $.ajax({
           url: `/${entry.psalm}.html`,
@@ -177,6 +180,9 @@ const parseHash = (hash) => {
       return r;
     });
 };
+
+const isValidPsalmPath =
+      (path) => /^(zalm|kantikum)\/[a-z0-9]+$/.test(path);
 
 // settings UI actions
 
