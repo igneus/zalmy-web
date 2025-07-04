@@ -4,7 +4,8 @@ desc 'psalm tone notation'
 task notated_tones: 'source/images/psalmodie_I-a.svg'
 
 file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tmpfile('psalmodie.ly'), __FILE__] do |t|
-  ruby *t.prerequisites[0..-2].tap {|pre| pre.insert(1, '--ids', '--prepend-text', '\version "2.19.0"   \include "src/lilypond/psalmtone.ly"') }
+  splitscores_options = ['--ids', '--prepend-text', '\version "2.19.0"   \include "src/lilypond/psalmtone.ly"']
+  ruby *t.prerequisites[0..-2].tap {|pre| pre.insert(1, *splitscores_options) }
 
   Dir[tmpfile('*_*.ly')].each do |f|
     # add the respective symbol as a mark to each divisio
