@@ -304,8 +304,10 @@ helpers do
         'nespory'
       when /ranní/
         'ranni'
-      when /uprostřed/
+      when /uprostřed/, /poledne/
         'uprostred'
+      when /(neděle|pondělí|úterý|středa|čtvrtek|pátek)/i
+        'kompletar'
       else
         'cteni'
       end
