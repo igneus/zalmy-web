@@ -11,6 +11,9 @@ const selectorRange = (template, iEnd) => {
 };
 
 // pointing
+//
+// (inline styles are used in order not to lose the styling
+// when copy-pasting to rich text editors)
 
 const unpoint =
       (node) => node.style = null;
