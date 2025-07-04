@@ -96,20 +96,7 @@ const singlePsalmPage = {
     const hash = window.location.hash;
     const tones = parseHash(hash);
     const tone = tones.length > 0 ? tones[0] : {};
-    const pointingLink = document.querySelector('a[data-tone="' + tone.tone + '"][data-differentia = "' + tone.differentia + '"]');
-    const allPointingLinks = document.querySelectorAll('.psalm-tone-selector a');
-
-    if (pointingLink == null) {
-      if (hash.length > 0) {
-        console.log(`Psalm tone "${tone.name}" not found.`)
-      }
-
-      randomElement(
-        Array.from(allPointingLinks).filter((link) => !link.dataset.differentia.endsWith('*'))
-      ).click();
-    } else {
-      pointingLink.click();
-    }
+    applyPsalmTone(tone, document.querySelector('.psalm'));
   },
 };
 
@@ -130,12 +117,17 @@ const multiplePsalmsPage = {
   // e.g. "#!zalm/110:VIII:G;kantikum/magnificat:VII:a"
   onHashChange: () => {
     const hash = window.location.hash;
-    const psalms = parseHash(hash);
+    const entries = parseHash(hash);
 
     // match hash entries to DOM nodes
     Array.from(document.querySelectorAll('.psalm')).map((node, i) => {
-      const entry = psalms[i];
-      if (node.dataset.path != entry.psalm) {
+      if (i >= entries.length) {
+        return;
+      }
+
+      const entry = entries[i];
+      const wrapper = node.parentElement;
+      if (entry.psalm != undefined && node.dataset.path != entry.psalm) {
         if (!isValidPsalmPath(entry.psalm)) {
           $(node).replaceWith('<p class="error">URL obsahuje neplatnou referenci na žalm, žalm nebylo možné načíst</p>');
           return;
@@ -146,12 +138,11 @@ const multiplePsalmsPage = {
           error: () => { $(node).replaceWith(`<p class="error">Žalm/kantikum se nepodařilo stáhnout (${entry.psalm})</p>`) },
           success: (data) => {
             $(node).replaceWith($('.psalm', $(data)));
-
-            // TODO apply psalm tone
+            applyPsalmTone(entry, wrapper.querySelector('.psalm'));
           }
         });
       } else {
-        // TODO apply psalm tone
+        applyPsalmTone(entry, node);
       }
     })
 
@@ -183,6 +174,24 @@ const parseHash = (hash) => {
 
 const isValidPsalmPath =
       (path) => /^(zalm|kantikum)\/[a-z0-9]+$/.test(path);
+
+const applyPsalmTone = (tone, psalmNode) => {
+  const wrapper = psalmNode.parentElement;
+  const pointingLink = wrapper.querySelector('a[data-tone="' + tone.tone + '"][data-differentia = "' + tone.differentia + '"]');
+
+  if (pointingLink == null) {
+    if (tone.tone != undefined) {
+      console.log(`Psalm tone "${tone.name}" not found.`)
+    }
+
+    const allPointingLinks = wrapper.querySelectorAll('.psalm-tone-selector a');
+    randomElement(
+      Array.from(allPointingLinks).filter((link) => !link.dataset.differentia.endsWith('*'))
+    ).click();
+  } else {
+    pointingLink.click();
+  }
+};
 
 // settings UI actions
 
