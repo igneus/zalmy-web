@@ -133,6 +133,8 @@ const multiplePsalmsPage = {
           return;
         }
 
+        // load the specified psalm
+        node.classList.add('loading');
         $.ajax({
           url: `/${entry.psalm}.html`,
           error: () => { $(node).replaceWith(`<p class="error">Žalm/kantikum se nepodařilo stáhnout (${entry.psalm})</p>`) },
@@ -144,9 +146,7 @@ const multiplePsalmsPage = {
       } else {
         applyPsalmTone(entry, node);
       }
-    })
-
-    // for each psalm: load if necessary, apply psalm tone
+    });
   },
 };
 

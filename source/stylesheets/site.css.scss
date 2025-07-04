@@ -81,6 +81,16 @@ a {
       }
     }
   }
+
+  &.loading {
+    background-color: #ccc;
+    animation: 1s infinite alternate loading-pulse;
+  }
+}
+
+@keyframes loading-pulse {
+  from { opacity: 0.2; }
+  to { opacity: 0.8; }
 }
 
 .psalms-list {
