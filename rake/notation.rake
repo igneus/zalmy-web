@@ -9,8 +9,12 @@ file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tm
 
   Dir[tmpfile('*_*.ly')].each do |f|
     # add the respective symbol as a mark to each divisio
-    sh 'sed', '-i', 's/\\\\barMin/\\\\mark\\\\mFlexa &/', f
-    sh 'sed', '-i', 's/\\\\barMaior/\\\\mark\\\\mAsterisk &/', f
+    script = <<~'EOS'
+    puts $_
+      &.gsub('\\barMin', '\\mark\\mFlexa \0')
+      &.gsub('\\barMaior', '\\mark\\mAsterisk \0')
+    EOS
+    sh 'ruby', '-n', '-i.bak', '-e', script, f
 
     output = File.join('source', 'images', normalize_psalm_tone_fname(File.basename(f).sub(/\.ly$/, '')))
     sh LILYPOND, '-dno-point-and-click', '--svg', '-o', output, f
