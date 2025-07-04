@@ -1,33 +1,33 @@
 # Tasks generating files in the data/ directory
 
-desc 'JSON with metadata of psalm tones'
-task tones_json: 'data/psalm_tones.json'
+desc 'YAML with metadata of psalm tones'
+task tones_data: 'data/psalm_tones.yaml'
 
-file 'data/psalm_tones.json' => [iafile('psalmodie/zakladni.yml'), __FILE__] do |task|
+file 'data/psalm_tones.yaml' => [iafile('psalmodie/zakladni.yml'), __FILE__] do |task|
   r = PsalmToneGroup.from_file(task.prerequisites[0]).each_pair.collect do |name,tone|
     t = tone.all.first.quantities
     {
-      name: tone.name.sub(/^_/, ''),
-      mediation: {
-        accents: t.first_accents,
-        preparatory: t.first_preparatory,
-        sliding: t.first_sliding_accent,
+      'name' => tone.name.sub(/^_/, ''),
+      'mediation' => {
+        'accents' => t.first_accents,
+        'preparatory' => t.first_preparatory,
+        'sliding' => t.first_sliding_accent,
       },
-      differentiae: tone.all.collect do |i|
+      'differentiae' => tone.all.collect do |i|
         d = i.quantities
         {
-          name: i.diff,
-          image: "/images/psalmodie_#{normalize_psalm_tone_fname(i.score_id)}.svg",
+          'name' => i.diff,
+          'image' => "/images/psalmodie_#{normalize_psalm_tone_fname(i.score_id)}.svg",
 
-          accents: d.second_accents,
-          preparatory: d.second_preparatory,
-          sliding: d.second_sliding_accent,
+          'accents' => d.second_accents,
+          'preparatory' => d.second_preparatory,
+          'sliding' => d.second_sliding_accent,
         }
       end
     }
   end
 
-  File.write task.name, JSON.dump(r)
+  File.write task.name, YAML.dump(r)
 end
 
 desc 'YAML with the psalter distribution'
