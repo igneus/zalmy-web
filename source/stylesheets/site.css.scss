@@ -49,6 +49,10 @@ a {
 
 .r { @extend %rubric; }
 
+.psalm-wrapper {
+  margin-bottom: 4em; // space between psalms is on the wrapper, so it remains in place also when .psalm is replaced by an error message
+}
+
 .psalm {
   .strophe {
     margin-bottom: 0.6em;
