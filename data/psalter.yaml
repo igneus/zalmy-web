@@ -1,0 +1,526 @@
+---
+První týden:
+  Neděle:
+    nesporyI:
+      - zalm141
+      - zalm142
+      - kantikum_flp2
+    modlitbaSeCtenim:
+      - zalm1
+      - zalm2
+      - zalm3
+    ranniChvaly:
+      - zalm63
+      - kantikum_dan3iii
+      - zalm149
+    modlitbaUprostredDne:
+      - zalm118i
+      - zalm118ii
+      - zalm118iii
+    nesporyII:
+      - zalm110
+      - zalm114
+      - kantikum_zj19
+      - kantikum_1petr2
+  Pondělí:
+    modlitbaSeCtenim:
+      - zalm6
+      - zalm9i
+      - zalm9ii
+    ranniChvaly:
+      - zalm5
+      - kantikum_1kron29
+      - zalm29
+    modlitbaUprostredDne:
+      - zalm19b
+      - zalm7i
+      - zalm7ii
+    nespory:
+      - zalm11
+      - zalm15
+      - kantikum_ef1
+  Úterý:
+    modlitbaSeCtenim:
+      - zalm10i
+      - zalm10ii
+      - zalm12
+    ranniChvaly:
+      - zalm24
+      - kantikum_tob13i
+      - zalm33
+    modlitbaUprostredDne:
+      - zalm119alef
+      - zalm13
+      - zalm14
+    nespory:
+      - zalm20
+      - zalm21
+      - kantikum_zj4
+  Středa:
+    modlitbaSeCtenim:
+      - zalm18i
+      - zalm18ii
+      - zalm18iii
+    ranniChvaly:
+      - zalm36
+      - kantikum_jdt16
+      - zalm47
+    modlitbaUprostredDne:
+      - zalm119beth
+      - zalm17i
+      - zalm17ii
+    nespory:
+      - zalm27i
+      - zalm27ii
+      - kantikum_kol1
+  Čtvrtek:
+    modlitbaSeCtenim:
+      - zalm18iv
+      - zalm18v
+      - zalm18vi
+    ranniChvaly:
+      - zalm57
+      - kantikum_jer31
+      - zalm48
+    modlitbaUprostredDne:
+      - zalm119gimel
+      - zalm25i
+      - zalm25ii
+    nespory:
+      - zalm30
+      - zalm32
+      - kantikum_zj11
+  Pátek:
+    modlitbaSeCtenim:
+      - zalm35i
+      - zalm35ii
+      - zalm35iii
+    ranniChvaly:
+      - zalm51
+      - kantikum_iz45
+      - zalm100
+    modlitbaUprostredDne:
+      - zalm119dalet
+      - zalm26
+      - zalm28
+    nespory:
+      - zalm41
+      - zalm46
+      - kantikum_zj15
+  Sobota:
+    modlitbaSeCtenim:
+      - zalm131
+      - zalm132i
+      - zalm132ii
+      - zalm105i
+      - zalm105ii
+      - zalm105iii
+    ranniChvaly:
+      - zalm119kof
+      - kantikum_ex15
+      - zalm117
+    modlitbaUprostredDne:
+      - zalm119he
+      - zalm34i
+      - zalm34ii
+Druhý týden:
+  Neděle:
+    nesporyI:
+      - zalm119nun
+      - zalm16
+      - kantikum_flp2
+    modlitbaSeCtenim:
+      - zalm104i
+      - zalm104ii
+      - zalm104iii
+    ranniChvaly:
+      - zalm118
+      - kantikum_dan3ii
+      - zalm150
+    modlitbaUprostredDne:
+      - zalm23
+      - zalm76i
+      - zalm76ii
+    nesporyII:
+      - zalm110
+      - zalm115
+      - kantikum_zj19
+      - kantikum_1petr2
+  Pondělí:
+    modlitbaSeCtenim:
+      - zalm31i
+      - zalm31ii
+      - zalm31iii
+    ranniChvaly:
+      - zalm42
+      - kantikum_sir36
+      - zalm19a
+    modlitbaUprostredDne:
+      - zalm119vau
+      - zalm40i
+      - zalm40ii
+    nespory:
+      - zalm45i
+      - zalm45ii
+      - kantikum_ef1
+  Úterý:
+    modlitbaSeCtenim:
+      - zalm37i
+      - zalm37ii
+      - zalm37iii
+    ranniChvaly:
+      - zalm43
+      - kantikum_iz38
+      - zalm65
+    modlitbaUprostredDne:
+      - zalm119zajin
+      - zalm53
+      - zalm54
+    nespory:
+      - zalm49i
+      - zalm49ii
+      - kantikum_zj4
+  Středa:
+    modlitbaSeCtenim:
+      - zalm39i
+      - zalm39ii
+      - zalm52
+    ranniChvaly:
+      - zalm77
+      - kantikum_1sam2
+      - zalm97
+    modlitbaUprostredDne:
+      - zalm119chet
+      - zalm55i
+      - zalm55ii
+    nespory:
+      - zalm62
+      - zalm67
+      - kantikum_kol1
+  Čtvrtek:
+    modlitbaSeCtenim:
+      - zalm44i
+      - zalm44ii
+      - zalm44iii
+    ranniChvaly:
+      - zalm80
+      - kantikum_iz12
+      - zalm81
+    modlitbaUprostredDne:
+      - zalm119tet
+      - zalm56
+      - zalm57
+    nespory:
+      - zalm72i
+      - zalm72ii
+      - kantikum_zj11
+  Pátek:
+    modlitbaSeCtenim:
+      - zalm38i
+      - zalm38ii
+      - zalm38iii
+    ranniChvaly:
+      - zalm51
+      - kantikum_hab3
+      - zalm147ii
+    modlitbaUprostredDne:
+      - zalm119jod
+      - zalm59
+      - zalm60
+    nespory:
+      - zalm116i
+      - zalm121
+      - kantikum_zj15
+  Sobota:
+    modlitbaSeCtenim:
+      - zalm136i
+      - zalm136cii
+      - zalm136ciii
+      - zalm106i
+      - zalm106ii
+      - zalm106iii
+    ranniChvaly:
+      - zalm92
+      - kantikum_dt32
+      - zalm8
+    modlitbaUprostredDne:
+      - zalm119kaf
+      - zalm61
+      - zalm64
+Třetí týden:
+  Neděle:
+    nesporyI:
+      - zalm113
+      - zalm116ii
+      - kantikum_flp2
+    modlitbaSeCtenim:
+      - zalm145ci
+      - zalm145cii
+      - zalm145ciii
+    ranniChvaly:
+      - zalm93
+      - kantikum_dan3iii
+      - zalm148
+    modlitbaUprostredDne:
+      - zalm118i
+      - zalm118ii
+      - zalm118iii
+    nesporyII:
+      - zalm110
+      - zalm111
+      - kantikum_zj19
+      - kantikum_1petr2
+  Pondělí:
+    modlitbaSeCtenim:
+      - zalm50i
+      - zalm50ii
+      - zalm50iii
+    ranniChvaly:
+      - zalm84
+      - kantikum_iz2
+      - zalm96
+    modlitbaUprostredDne:
+      - zalm119lamed
+      - zalm71i
+      - zalm71ii
+    nespory:
+      - zalm123
+      - zalm124
+      - kantikum_ef1
+  Úterý:
+    modlitbaSeCtenim:
+      - zalm68i
+      - zalm68ii
+      - zalm68iii
+    ranniChvaly:
+      - zalm85
+      - kantikum_iz26
+      - zalm67
+    modlitbaUprostredDne:
+      - zalm119mem
+      - zalm74i
+      - zalm74ii
+    nespory:
+      - zalm125
+      - zalm131
+      - kantikum_zj4
+  Středa:
+    modlitbaSeCtenim:
+      - zalm89i
+      - zalm89ii
+      - zalm89iii
+    ranniChvaly:
+      - zalm86
+      - kantikum_iz33ii
+      - zalm98
+    modlitbaUprostredDne:
+      - zalm119nun
+      - zalm70
+      - zalm75
+    nespory:
+      - zalm126
+      - zalm127
+      - kantikum_kol1
+  Čtvrtek:
+    modlitbaSeCtenim:
+      - zalm89iv
+      - zalm89v
+      - zalm90
+    ranniChvaly:
+      - zalm87
+      - kantikum_iz40ii
+      - zalm99
+    modlitbaUprostredDne:
+      - zalm119samech
+      - zalm79
+      - zalm80
+    nespory:
+      - zalm132i
+      - zalm132ii
+      - kantikum_zj11
+  Pátek:
+    modlitbaSeCtenim:
+      - zalm69i
+      - zalm69ii
+      - zalm69iii
+    ranniChvaly:
+      - zalm51
+      - kantikum_jer14
+      - zalm100
+    modlitbaUprostredDne:
+      - zalm22i
+      - zalm22ii
+      - zalm22iii
+    nespory:
+      - zalm135i
+      - zalm135ii
+      - kantikum_zj15
+  Sobota:
+    modlitbaSeCtenim:
+      - zalm107i
+      - zalm107ii
+      - zalm107iii
+    ranniChvaly:
+      - zalm119kof
+      - kantikum_mdr9
+      - zalm117
+    modlitbaUprostredDne:
+      - zalm119ajin
+      - zalm34i
+      - zalm34ii
+Čtvrtý týden:
+  Neděle:
+    nesporyI:
+      - zalm122
+      - zalm130
+      - kantikum_flp2
+    modlitbaSeCtenim:
+      - zalm24
+      - zalm66i
+      - zalm66ii
+    ranniChvaly:
+      - zalm118
+      - kantikum_dan3ii
+      - zalm150
+    modlitbaUprostredDne:
+      - zalm23
+      - zalm76i
+      - zalm76ii
+    nesporyII:
+      - zalm110
+      - zalm112
+      - kantikum_1petr2
+  Pondělí:
+    modlitbaSeCtenim:
+      - zalm73i
+      - zalm73ii
+      - zalm73iii
+    ranniChvaly:
+      - zalm90
+      - kantikum_iz42
+      - zalm135i
+    modlitbaUprostredDne:
+      - zalm119pe
+      - zalm82
+      - zalm120
+    nespory:
+      - zalm136i
+      - zalm136ii
+      - kantikum_ef1
+  Úterý:
+    modlitbaSeCtenim:
+      - zalm102i
+      - zalm102ii
+      - zalm102iii
+    ranniChvaly:
+      - zalm101
+      - kantikum_dan3i
+      - zalm144
+    modlitbaUprostredDne:
+      - zalm119sade
+      - zalm88i
+      - zalm88ii
+    nespory:
+      - zalm137
+      - zalm138
+      - kantikum_zj4
+  Středa:
+    modlitbaSeCtenim:
+      - zalm103i
+      - zalm103ii
+      - zalm103iii
+    ranniChvaly:
+      - zalm108
+      - kantikum_iz61
+      - zalm146
+    modlitbaUprostredDne:
+      - zalm119kof
+      - zalm94i
+      - zalm94ii
+    nespory:
+      - zalm139i
+      - zalm139ii
+      - kantikum_kol1
+  Čtvrtek:
+    modlitbaSeCtenim:
+      - zalm44i
+      - zalm44ii
+      - zalm44iii
+    ranniChvaly:
+      - zalm143
+      - kantikum_iz66
+      - zalm147i
+    modlitbaUprostredDne:
+      - zalm119res
+      - zalm128
+      - zalm129
+    nespory:
+      - zalm144i
+      - zalm144ii
+      - kantikum_zj11
+  Pátek:
+    modlitbaSeCtenim:
+      - zalm55ci
+      - zalm55cii
+      - zalm55ciii
+      - zalm78i
+      - zalm78ii
+      - zalm78iii
+    ranniChvaly:
+      - zalm51
+      - kantikum_tob13ii
+      - zalm147ii
+    modlitbaUprostredDne:
+      - zalm119sin
+      - zalm133
+      - zalm140
+    nespory:
+      - zalm145i
+      - zalm145ii
+      - kantikum_zj15
+  Sobota:
+    modlitbaSeCtenim:
+      - zalm50i
+      - zalm50ii
+      - zalm50iii
+      - zalm78iv
+      - zalm78v
+      - zalm78vi
+    ranniChvaly:
+      - zalm92
+      - kantikum_ez36
+      - zalm8
+    modlitbaUprostredDne:
+      - zalm119tau
+      - zalm45i
+      - zalm45ii
+Kompletář:
+  Neděle po 1. nešporách:
+      - zalm4
+      - zalm134
+  Neděle po 2. nešporách:
+      - zalm91
+  Pondělí:
+      - zalm86
+  Úterý:
+      - zalm143
+  Středa:
+      - zalm31
+      - zalm130
+  Čtvrtek:
+      - zalm16
+  Pátek:
+      - zalm88
+Doplňovací cyklus žalmů pro modlitbu uprostřed dne:
+    První oddíl (dopoledne):
+      - zalm120
+      - zalm121
+      - zalm122
+    Druhý oddíl (v poledne):
+      - zalm123
+      - zalm124
+      - zalm125
+    Třetí oddíl (odpoledne):
+      - zalm126
+      - zalm127
+      - zalm128

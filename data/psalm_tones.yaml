@@ -1,0 +1,238 @@
+---
+- name: I
+  mediation:
+    accents: 2
+    preparatory: 0
+    sliding: false
+  differentiae:
+  - name: D
+    image: "/images/psalmodie_I-D.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: D'
+    image: "/images/psalmodie_I-Dx.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: D2
+    image: "/images/psalmodie_I-D2.svg"
+    accents: 1
+    preparatory: 2
+    sliding: true
+  - name: f
+    image: "/images/psalmodie_I-f.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: g
+    image: "/images/psalmodie_I-g.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: g2
+    image: "/images/psalmodie_I-g2.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: g3
+    image: "/images/psalmodie_I-g3.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: a
+    image: "/images/psalmodie_I-a.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: a2
+    image: "/images/psalmodie_I-a2.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: a3
+    image: "/images/psalmodie_I-a3.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+- name: II
+  mediation:
+    accents: 1
+    preparatory: 0
+    sliding: false
+  differentiae:
+  - name: D
+    image: "/images/psalmodie_II-D.svg"
+    accents: 1
+    preparatory: 1
+    sliding: false
+- name: II
+  mediation:
+    accents: 1
+    preparatory: 0
+    sliding: false
+  differentiae:
+  - name: A
+    image: "/images/psalmodie_II-A.svg"
+    accents: 1
+    preparatory: 1
+    sliding: false
+- name: III
+  mediation:
+    accents: 2
+    preparatory: 0
+    sliding: true
+  differentiae:
+  - name: h
+    image: "/images/psalmodie_III-h.svg"
+    accents: 1
+    preparatory: 1
+    sliding: false
+  - name: a
+    image: "/images/psalmodie_III-a.svg"
+    accents: 1
+    preparatory: 1
+    sliding: false
+  - name: g
+    image: "/images/psalmodie_III-g.svg"
+    accents: 1
+    preparatory: 3
+    sliding: false
+- name: IV
+  mediation:
+    accents: 1
+    preparatory: 2
+    sliding: false
+  differentiae:
+  - name: g
+    image: "/images/psalmodie_IV-g.svg"
+    accents: 1
+    preparatory: 0
+    sliding: false
+  - name: E
+    image: "/images/psalmodie_IV-E.svg"
+    accents: 1
+    preparatory: 3
+    sliding: true
+- name: IV alt
+  mediation:
+    accents: 1
+    preparatory: 2
+    sliding: false
+  differentiae:
+  - name: c
+    image: "/images/psalmodie_IValt-c.svg"
+    accents: 1
+    preparatory: 0
+    sliding: false
+  - name: A
+    image: "/images/psalmodie_IValt-A.svg"
+    accents: 1
+    preparatory: 3
+    sliding: false
+  - name: A*
+    image: "/images/psalmodie_IValt-Ax.svg"
+    accents: 1
+    preparatory: 3
+    sliding: false
+  - name: d
+    image: "/images/psalmodie_IValt-d.svg"
+    accents: 1
+    preparatory: 3
+    sliding: false
+- name: V
+  mediation:
+    accents: 1
+    preparatory: 0
+    sliding: false
+  differentiae:
+  - name: a
+    image: "/images/psalmodie_V-a.svg"
+    accents: 2
+    preparatory: 0
+    sliding: false
+- name: VI
+  mediation:
+    accents: 1
+    preparatory: 1
+    sliding: false
+  differentiae:
+  - name: F
+    image: "/images/psalmodie_VI-F.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+- name: VI alt
+  mediation:
+    accents: 2
+    preparatory: 0
+    sliding: false
+  differentiae:
+  - name: F
+    image: "/images/psalmodie_VIalt-F.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+- name: VII
+  mediation:
+    accents: 2
+    preparatory: 0
+    sliding: false
+  differentiae:
+  - name: a
+    image: "/images/psalmodie_VII-a.svg"
+    accents: 2
+    preparatory: 0
+    sliding: false
+  - name: b
+    image: "/images/psalmodie_VII-b.svg"
+    accents: 2
+    preparatory: 0
+    sliding: false
+  - name: c
+    image: "/images/psalmodie_VII-c.svg"
+    accents: 2
+    preparatory: 0
+    sliding: false
+  - name: c2
+    image: "/images/psalmodie_VII-c2.svg"
+    accents: 2
+    preparatory: 0
+    sliding: false
+  - name: d
+    image: "/images/psalmodie_VII-d.svg"
+    accents: 2
+    preparatory: 0
+    sliding: false
+- name: VIII
+  mediation:
+    accents: 1
+    preparatory: 0
+    sliding: false
+  differentiae:
+  - name: G
+    image: "/images/psalmodie_VIII-G.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: G*
+    image: "/images/psalmodie_VIII-Gx.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+  - name: c
+    image: "/images/psalmodie_VIII-c.svg"
+    accents: 1
+    preparatory: 2
+    sliding: false
+- name: per
+  mediation:
+    accents: 1
+    preparatory: 3
+    sliding: false
+  differentiae:
+  - name: ''
+    image: "/images/psalmodie_per.svg"
+    accents: 1
+    preparatory: 1
+    sliding: false
