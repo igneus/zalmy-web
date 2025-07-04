@@ -1,5 +1,5 @@
 %p.psalms-list
-  %span= title + ':'
+  %span= hour_link(title, items) + ':'
   - items.each do |i|
     - if i == 'kantikum_zj19'
       = zj19_tone_link

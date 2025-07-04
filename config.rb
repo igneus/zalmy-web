@@ -322,12 +322,14 @@ helpers do
     psalms_hash = psalms.collect do |i|
       path_name =
         case i.to_s # TODO partial duplicate of code block from _proper_psalms_listing.html.slim
-        when '1tim3', 'zj19'
+        when /^(kantikum_)?(1tim3|zj19)$/
         # TODO
         when /^\d+(?!kron|sam|petr)/
           "zalm#{i}"
         when /^\((.*?)\)$/
         # rubric, not a psalm
+        when /^(zalm|kantikum_)/ # full pathname as used in the psalter data file
+          i
         else
           "kantikum_#{i}"
         end
