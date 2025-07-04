@@ -97,9 +97,10 @@ const selectPsalmToneByUrlHash = (pointingLinks) => {
 
 const setVersePartNewlines =
       (checkbox) =>
-      document.querySelector('.psalm')
-      .classList[checkbox.checked ? 'add' : 'remove'](
-        'verse-part-newlines'
+      document.querySelectorAll('.psalm').forEach(
+        (ps) => ps.classList[checkbox.checked ? 'add' : 'remove'](
+          'verse-part-newlines'
+        )
       );
 
 window.onload = () => {
