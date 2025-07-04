@@ -24,6 +24,13 @@ const pointSlidingAccent =
 const pointPreparatory =
       (node) => node.style = 'font-style: italic';
 
+// psalms/canticles with hardcoded default tones
+// (normally a random tone is picked if none is specified)
+
+const defaultTones = {
+  'kantikum/nuncdimittis': {tone: 'III', differentia: 'a'},
+};
+
 // main UI actions
 
 // find a .psalm-wrapper relative to the specified pointing link.
@@ -182,6 +189,11 @@ const applyPsalmTone = (tone, psalmNode) => {
   if (pointingLink == null) {
     if (tone.tone != undefined) {
       console.log(`Psalm tone "${tone.name}" not found.`)
+    }
+
+    const dt = defaultTones[psalmNode.dataset.path];
+    if (dt != undefined) {
+      return applyPsalmTone(dt, psalmNode);
     }
 
     const allPointingLinks = wrapper.querySelectorAll('.psalm-tone-selector a');
