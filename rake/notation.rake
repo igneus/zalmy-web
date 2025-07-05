@@ -42,8 +42,8 @@ file tmpfile('psalmodie.ly') => iafiles('nastroje/psalmtone.rb', 'psalmodie/zakl
   sh "ruby #{t.prerequisites[0]} --preamble #{preamble.inspect} #{t.prerequisites[1]} > #{t.name}"
 
   # each score on a separate page
-  script = <<~EOS
-  $_.gsub!(/^\}/, "}\n\\\\pageBreak")
+  script = <<~'EOS'
+  $_.gsub!(/^\}/, "}\n\\pageBreak")
   EOS
   ruby '-p', '-i', '-e', script, t.name
 
