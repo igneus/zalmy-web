@@ -61,6 +61,8 @@ file 'data/psalter.yaml' => [iafile('antifonar/antifonar_zaltar.ltex'), __FILE__
         when /\\((nespory|modlitba|ranni).*?)$/, /\\nadpisHodinka\{(.+?)\}/
           last = []
           "    #{$1}:"
+        when /\\rubrikaZalmyveZvlastnichDobach/
+          '    modlitbaSeCtenimAVPV:'
         when /\\zalm(div)?\{(.+?)\}/
           "      - zalm#{$2}"
         when /\\kantikum\{(.+?)\}/
