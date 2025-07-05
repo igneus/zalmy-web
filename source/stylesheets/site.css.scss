@@ -55,7 +55,11 @@ a {
   &.skipped { display: none; }
 }
 
+.single-psalm .title { display: none; }
+
 .psalm {
+  .title { font-weight: bold; text-align: center; margin-bottom: 0.5em; }
+
   .strophe {
     margin-bottom: 0.6em;
   }
@@ -117,4 +121,6 @@ a {
   .psalm-tone.selected {
     strong, a.selected { display: inline; color: $text-color !important; text-decoration: none; font-weight: normal; }
   }
+
+  .psalm .title a { text-decoration: none; }
 }

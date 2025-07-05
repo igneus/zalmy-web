@@ -135,6 +135,9 @@ class PsalmMarkup
 
     Markaby::Builder.new do
       div.psalm('data-path': psalm.data_path) do
+        div.title do
+          a(href: psalm.web_path) { psalm.title }
+        end
         pslm_parsed.strophes.each do |s|
           div.strophe do
             s.verses.each do |v|

@@ -1,6 +1,6 @@
 h1= psalm.title
 
-= partial 'psalm', locals: {psalm: psalm}
+.single-psalm= partial 'psalm', locals: {psalm: psalm}
 
 - content_for :footer do
   = partial 'settings'
