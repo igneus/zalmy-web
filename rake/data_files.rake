@@ -40,6 +40,7 @@ file 'data/psalter.yaml' => [iafile('antifonar/antifonar_zaltar.ltex'), __FILE__
   skip = true
   File.open(t.name, 'w') do |f|
     f.puts '---'
+    last = []
     File.read(t.prerequisites[0]).each_line do |line|
       line.gsub! '\\\\', '' # double backslash, LaTeX line break
       line.gsub! '~', ' '
@@ -58,15 +59,24 @@ file 'data/psalter.yaml' => [iafile('antifonar/antifonar_zaltar.ltex'), __FILE__
         when /\\nadpisDen\{(.+?)\}/
           "  #{$1}:"
         when /\\((nespory|modlitba|ranni).*?)$/, /\\nadpisHodinka\{(.+?)\}/
+          last = []
           "    #{$1}:"
         when /\\zalm(div)?\{(.+?)\}/
           "      - zalm#{$2}"
         when /\\kantikum\{(.+?)\}/
+          if $1 == '1petr2'
+            f.puts '    nesporyIIpust:'
+            -3.upto(-2).each {|i| f.puts last[i] }
+          end
           "      - kantikum_#{$1}" unless $1 == 'nuncdimittis'
         when /\\input{kantikum_zj19.tex}/
           "      - kantikum_zj19"
         end
-      f.puts r if r && !skip
+
+      if r && !skip
+        f.puts r
+        last << r
+      end
     end
   end
 end
