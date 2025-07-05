@@ -113,7 +113,7 @@ const multiplePsalmsPage = {
   onLinkClick: (event) => {
     event.preventDefault();
     window.location.hash = '#!' +
-      Array.from(document.querySelectorAll('.psalm')).map((ps) => {
+      Array.from(document.querySelectorAll('.psalm:not(.skipped)')).map((ps) => {
         const ds = ps.dataset;
         return [ds.path, ds.tone, ds.differentia].join(':');
       }).join(';')
@@ -126,8 +126,17 @@ const multiplePsalmsPage = {
     const hash = window.location.hash;
     const entries = parseHash(hash);
 
+    // Compline: handle varying number of psalms
+    if (window.location.pathname.endsWith('kompletar.html')) {
+      const wrapper = Array.from(document.querySelectorAll('.psalm-wrapper'))[1];
+      const op = entries.filter(i => (i.psalm != 'kantikum/nuncdimittis')).length >= 2 ? 'remove' : 'add';
+      const toggleSkip = (el) => el.classList[op]('skipped');
+      toggleSkip(wrapper);
+      toggleSkip(wrapper.querySelector('.psalm'));
+    }
+
     // match hash entries to DOM nodes
-    Array.from(document.querySelectorAll('.psalm')).map((node, i) => {
+    Array.from(document.querySelectorAll('.psalm:not(.skipped)')).map((node, i) => {
       if (i >= entries.length) {
         return;
       }
