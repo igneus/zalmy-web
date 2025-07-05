@@ -14,7 +14,7 @@ file 'source/images/psalmodie_I-a.svg' => [iafile('nastroje/splitscores.rb'), tm
       &.gsub('\\barMin', '\\mark\\mFlexa \0')
       &.gsub('\\barMaior', '\\mark\\mAsterisk \0')
     EOS
-    sh 'ruby', '-n', '-i.bak', '-e', script, f
+    ruby '-n', '-i.bak', '-e', script, f
 
     output = File.join('source', 'images', normalize_psalm_tone_fname(File.basename(f).sub(/\.ly$/, '')))
     sh LILYPOND, '-dno-point-and-click', '--svg', '-o', output, f
