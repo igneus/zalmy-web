@@ -1,5 +1,8 @@
 # Tasks generating files in the data/ directory
 
+desc 'all data files'
+task data_files: %i[tones_data psalter proper]
+
 desc 'YAML with metadata of psalm tones'
 task tones_data: 'data/psalm_tones.yaml'
 

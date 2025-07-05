@@ -33,7 +33,7 @@ require iafile('nastroje/psalmtone.rb')
 import *Dir['rake/*.rake']
 
 desc 'generated files not managed by Middleman'
-task generated_files: %i[tones_data notated_tones psalter proper]
+task generated_files: %i[data_files notated_tones]
 
 desc 'delete all build files'
 task(:clean) { sh 'rm -rf build/*/*' }
