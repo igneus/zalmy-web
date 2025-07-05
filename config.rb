@@ -324,16 +324,21 @@ helpers do
       return label
     end
 
-    psalms_hash = psalms.collect do |i|
-      case i.to_s # TODO partial duplicate of code block from _proper_psalms_listing.html.slim
-      when /kantikum_(1tim3|zj19)$/
-        nil # TODO
-      when /^(zalm|kantikum)/
-        i
+    psalms_hash =
+      psalms
+        .select {|i| i.to_s =~ /^(zalm|kantikum)/ }
+        .collect do |path_name|
+      if path_name =~ /(zj19|1tim3)/
+        # The canticles are currently not available on the website
+        # and therefore unknown to Psalms, but in this particular
+        # case it's preferable to build an URL hash with an invalid
+        # reference and let the hour page report canticle loading error
+        "kantikum/#{$1}"
       else
-        nil
-      end
-    end.compact.collect {|path_name| (path_name ? Psalms[path_name].data_path : '') + '::' }.join(';')
+        Psalms[path_name].data_path
+      end +
+        '::'
+    end.join(';')
 
     link_to label, "hodinka/#{page}.html#!" + psalms_hash
   end
