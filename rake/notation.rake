@@ -49,9 +49,8 @@ file tmpfile('psalmodie.ly') => iafiles('nastroje/psalmtone.rb', 'psalmodie/zakl
 
   # add the respective symbol as a mark to each divisio
   script = <<~'EOS'
-  puts $_
-    &.gsub('\\barMin', '\\mark\\mFlexa \0')
-    &.gsub('\\barMaior', '\\mark\\mAsterisk \0')
+  $_.gsub!('\\barMin', '\\mark\\mFlexa \0')
+  $_.gsub!('\\barMaior', '\\mark\\mAsterisk \0')
   EOS
-  ruby '-n', '-i.bak', '-e', script, t.name
+  ruby '-p', '-i.bak', '-e', script, t.name
 end
