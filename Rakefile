@@ -20,9 +20,12 @@ def iafiles(*paths)
   paths.collect(&method(:iafile))
 end
 
-# differentiae like "D'" or "G*" are not file-name-friendly
-def normalize_psalm_tone_fname(fname)
-  fname.sub(/[^\w]$/, 'x')
+# accepts a psalm tone representation as defined in psalmtone.rb,
+# returns a file name of the tone's image
+def psalm_tone_filename(tone)
+  'psalmodie_' +
+    tone.score_id.sub(/[^\w]$/, 'x') + # differentiae like "D'" or "G*" are not file-name-friendly
+    '.svg'
 end
 
 require iafile('nastroje/psalmtone.rb')

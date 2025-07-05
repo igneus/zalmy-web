@@ -17,7 +17,7 @@ file 'data/psalm_tones.yaml' => [iafile('psalmodie/zakladni.yml'), __FILE__] do 
         d = i.quantities
         {
           'name' => i.diff,
-          'image' => "/images/psalmodie_#{normalize_psalm_tone_fname(i.score_id)}.svg",
+          'image' => '/images/' + psalm_tone_filename(i),
 
           'accents' => d.second_accents,
           'preparatory' => d.second_preparatory,

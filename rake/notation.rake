@@ -4,13 +4,13 @@ notation_images =
 PsalmToneGroup
   .from_file(iafile('psalmodie/zakladni.yml'))
   .each_pair
-  .flat_map {|_, tone| tone.all.collect(&:score_id) }
+  .flat_map {|_, tone| tone }
   .each
   .with_index(1)
-  .collect do |score_id, i|
+  .collect do |tone, i|
   # LilyPond produces numbered pages, we pair them to psalm tone names
   svg_page = tmpfile("psalmodie-#{i}.svg")
-  output = File.join('source', 'images', normalize_psalm_tone_fname("psalmodie_#{score_id}") + '.svg')
+  output = File.join('source', 'images', psalm_tone_filename(tone))
 
   file svg_page => [tmpfile('psalmodie.ly'), 'src/lilypond/psalmtone.ly', __FILE__] do |t|
     Dir.chdir('tmp') do
