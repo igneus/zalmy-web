@@ -1,3 +1,5 @@
+% -*- master: ../../tmp/psalmodie.ly;
+
 \version "2.22.0"
 
 \header {
@@ -43,6 +45,9 @@ myStaffSize = #16
                           "Courier"
      (/ myStaffSize 20)))
 
+  % get rid of page numbers
+  oddHeaderMarkup = ##f
+  evenHeaderMarkup = ##f
 }
 
 % choral --------------------------------------------------------
