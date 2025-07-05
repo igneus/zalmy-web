@@ -4,7 +4,7 @@ notation_images =
 PsalmToneGroup
   .from_file(iafile('psalmodie/zakladni.yml'))
   .each_pair
-  .flat_map {|_, tone| tone }
+  .flat_map {|_, tone| tone.all }
   .each
   .with_index(1)
   .collect do |tone, i|
