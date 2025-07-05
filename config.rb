@@ -256,6 +256,19 @@ Psalms.all.each do |ps|
   )
 end
 
+# fake pages for the currently unsupported responsorial canticles
+[
+  Psalms::Psalm.new('srov. Zj 19', 'kantikum_zj19.zalm', 'kantikum_zj19', true),
+  Psalms::Psalm.new('1 Tim 3', 'kantikum_1tim3.zalm', 'kantikum_1tim3', true),
+].each do |i|
+  proxy(
+    i.web_path,
+    '/special_canticle.html',
+    locals: {psalm: i},
+    ignore: true
+  )
+end
+
 proxy(
   '/tedeum.html',
   '/psalm.html',
@@ -296,8 +309,15 @@ helpers do
     "http://www.inadiutorium.cz/noty##{sheet_symbol}"
   end
 
+  def special_canticle_urls
+    @canticle_urls ||= {
+      'kantikum_zj19' => 'kantZj19',
+      'kantikum_1tim3' => 'kant1Tim3',
+    }.transform_values {|v| in_adiutorium_sheet_link v }
+  end
+
   def zj19_tone_link
-    partial 'proper_tone_link', locals: {name: 'srov. Zj 19', link: in_adiutorium_sheet_link('kantZj19')}
+    partial 'proper_tone_link', locals: {name: 'srov. Zj 19', link: special_canticle_urls['kantikum_zj19']}
   end
 
   def hour_link(label, psalms)

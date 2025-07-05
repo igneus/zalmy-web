@@ -25,7 +25,7 @@
       - psalms.each do |i|
         - case i.to_s
         - when 'kantikum_1tim3'
-          = partial 'proper_tone_link', locals: {name: '1 Tim 3', link: in_adiutorium_sheet_link('kant1Tim3')}
+          = partial 'proper_tone_link', locals: {name: '1 Tim 3', link: special_canticle_urls['kantikum_1tim3']}
         - when 'kantikum_zj19'
           = zj19_tone_link
         - when /^\((.*?)\)$/
