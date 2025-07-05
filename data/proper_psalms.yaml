@@ -2,141 +2,141 @@
 Doba adventní:
   Neděle:
     vigilie:
-    - iz40ii
-    - iz42
-    - iz49
+    - kantikum_iz40ii
+    - kantikum_iz42
+    - kantikum_iz49
 Doba vánoční:
   Narození Páně (slavnost, 25.12.):
     1. nešpory:
-    - 113
-    - 147ii
-    - flp2
+    - zalm113
+    - zalm147ii
+    - kantikum_flp2
     modlitba se čtením:
-    - 2
-    - 19a
-    - 45i
+    - zalm2
+    - zalm19a
+    - zalm45i
     - "(+)"
-    - 45ii
+    - zalm45ii
     vigilie:
-    - iz26
-    - iz40i
-    - iz66
+    - kantikum_iz26
+    - kantikum_iz40i
+    - kantikum_iz66
     ranní chvály: rchne1t
     modlitba uprostřed dne:
-    - 19b
-    - 47
-    - 48
+    - zalm19b
+    - zalm47
+    - zalm48
     2. nešpory:
-    - 110
-    - 130
-    - kol1
+    - zalm110
+    - zalm130
+    - kantikum_kol1
   29. prosince:
     modlitba se čtením:
-    - 46
-    - 72i
-    - 72ii
+    - zalm46
+    - zalm72i
+    - zalm72ii
   30. prosince:
     modlitba se čtením:
-    - 85
-    - 89i
-    - 89ii
+    - zalm85
+    - zalm89i
+    - zalm89ii
   31. prosince:
     modlitba se čtením:
-    - 96
-    - 97
-    - 98
+    - zalm96
+    - zalm97
+    - zalm98
   Matky Boží, Panny Marie (slavnost, 1.1.):
     modlitba se čtením:
-    - 24
-    - 87
-    - 99
+    - zalm24
+    - zalm87
+    - zalm99
     vigilie: "(Jako o slavnosti Narození Páně.)"
   Zjevení Páně (slavnost, 6.1. nebo v neděli od 2. do 8.1.):
     1. nešpory:
-    - 135i
-    - 135ii
-    - 1tim3
+    - zalm135i
+    - zalm135ii
+    - kantikum_1tim3
     modlitba se čtením:
-    - 72i
+    - zalm72i
     - "(+)"
-    - 72ii
-    - 96
-    - 97
+    - zalm72ii
+    - zalm96
+    - zalm97
     vigilie: "(Jako o slavnosti Narození Páně.)"
     ranní chvály: rchne1t
     modlitba uprostřed dne:
-    - 47
-    - 86i
-    - 98
+    - zalm47
+    - zalm86i
+    - zalm98
     2. nešpory:
-    - 110
-    - 112
-    - zj15
+    - zalm110
+    - zalm112
+    - kantikum_zj15
   Křtu Páně (svátek):
     1. nešpory: "(Jako o slavnosti Zjevení Páně.)"
     modlitba se čtením:
-    - 29
-    - 66i
-    - 66ii
+    - zalm29
+    - zalm66i
+    - zalm66ii
     vigilie: "(Jako o slavnosti Narození Páně.)"
     ranní chvály: rchne1t
     2. nešpory: "(Jako o slavnosti Zjevení Páně.)"
 Doba postní:
   Neděle:
     vigilie:
-    - jer14
-    - ez36
-    - plac5
+    - kantikum_jer14
+    - kantikum_ez36
+    - kantikum_plac5
 Velikonoční triduum:
   Velký pátek:
     modlitba se čtením:
-    - 2
-    - 22i
+    - zalm2
+    - zalm22i
     - "(+)"
-    - 22ii
+    - zalm22ii
     - "(- volitelně se může připojit)"
-    - 22iii
-    - 38i
+    - zalm22iii
+    - zalm38i
     - "(+)"
-    - 38ii
+    - zalm38ii
     - "(+)"
-    - 38iii
+    - zalm38iii
     vigilie: "(Jako o postních nedělích.)"
     ranní chvály: pa2t
     modlitba uprostřed dne:
-    - 40i
+    - zalm40i
     - "(+)"
-    - 40ii
-    - 54
-    - 88i
+    - zalm40ii
+    - zalm54
+    - zalm88i
     - "(+)"
-    - 88ii
+    - zalm88ii
     nešpory:
-    - 116ii
-    - 143
-    - flp2
+    - zalm116ii
+    - zalm143
+    - kantikum_flp2
   Bílá sobota:
     modlitba se čtením:
-    - 4
-    - 16
-    - 24
+    - zalm4
+    - zalm16
+    - zalm24
     vigilie: "(Jako o postních nedělích.)"
     ranní chvály:
-    - 64
-    - iz38
-    - 150
+    - zalm64
+    - kantikum_iz38
+    - zalm150
     modlitba uprostřed dne:
-    - 27i
+    - zalm27i
     - "(+)"
-    - 27ii
-    - 30
-    - 76i
+    - zalm27ii
+    - zalm30
+    - zalm76i
     - "(+)"
-    - 76ii
+    - zalm76ii
     nešpory:
-    - 116ii
-    - 143
-    - flp2
+    - zalm116ii
+    - zalm143
+    - kantikum_flp2
 Doba velikonoční:
   Zmrtvýchvstání Páně (slavnost):
     ranní chvály: rchne1t
@@ -145,70 +145,70 @@ Doba velikonoční:
   pondělí ve velikonočním oktávu:
     modlitba se čtením: ne1t
     modlitba uprostřed dne:
-    - 8
-    - 19a
-    - 19b
+    - zalm8
+    - zalm19a
+    - zalm19b
   úterý ve velikonočním oktávu:
     modlitba se čtením: ne4t
     modlitba uprostřed dne:
-    - 119alef
-    - 16
-    - 23
+    - zalm119alef
+    - zalm16
+    - zalm23
   středa ve velikonočním oktávu:
     modlitba se čtením: ne2t
     modlitba uprostřed dne:
-    - 119beth
-    - 28
-    - 116ii
+    - zalm119beth
+    - zalm28
+    - zalm116ii
   čtvrtek ve velikonočním oktávu:
     modlitba se čtením: "(Z modlitby uprostřed dne neděle 1. týdne.)"
     modlitba uprostřed dne:
-    - 119gimel
-    - 30i
-    - 30ii
+    - zalm119gimel
+    - zalm30i
+    - zalm30ii
   pátek ve velikonočním oktávu:
     modlitba se čtením:
-    - 136i
-    - 136cii
-    - 136ciii
+    - zalm136i
+    - zalm136cii
+    - zalm136ciii
     modlitba uprostřed dne:
-    - 119dalet
-    - 76i
-    - 76ii
+    - zalm119dalet
+    - zalm76i
+    - zalm76ii
   sobota ve velikonočním oktávu:
     modlitba se čtením: ne3t
     modlitba uprostřed dne:
-    - 119he
-    - 96i
-    - 96ii
+    - zalm119he
+    - zalm96i
+    - zalm96ii
   Druhá neděle velikonoční:
     modlitba se čtením: ne1t
   Neděle:
     vigilie:
-    - iz63
-    - oz6
-    - sof3
+    - kantikum_iz63
+    - kantikum_oz6
+    - kantikum_sof3
   Nanebevstoupení Páně (slavnost):
     1. nešpory:
-    - 113
-    - 117
-    - zj11
+    - zalm113
+    - zalm117
+    - kantikum_zj11
     modlitba se čtením: ut3t
     vigilie: "(Jako o velikonočních nedělích.)"
     ranní chvály: rchne1t
     modlitba uprostřed dne:
-    - 8
-    - 19a
-    - 19b
+    - zalm8
+    - zalm19a
+    - zalm19b
     2. nešpory:
-    - 110
-    - 47
-    - zj11
+    - zalm110
+    - zalm47
+    - kantikum_zj11
   Seslání Ducha svatého (slavnost):
     1. nešpory:
-    - 113
-    - 147i
-    - zj15
+    - zalm113
+    - zalm147i
+    - kantikum_zj15
     modlitba se čtením: ne2t
     vigilie: "(Jako o velikonočních nedělích.)"
     ranní chvály: rchne1t
@@ -217,375 +217,375 @@ Doba velikonoční:
 Liturgické mezidobí:
   Neděle:
     vigilie:
-    - iz33i
-    - iz33ii
-    - sir36b
+    - kantikum_iz33i
+    - kantikum_iz33ii
+    - kantikum_sir36b
   Ježíše Krista Krále (slavnost):
     1. nešpory:
-    - 113
-    - 117
-    - zj4
+    - zalm113
+    - zalm117
+    - kantikum_zj4
     modlitba se čtením:
-    - 2
-    - 72i
-    - 72ii
+    - zalm2
+    - zalm72i
+    - zalm72ii
     vigilie:
-    - 1kron29
-    - iz12
-    - iz61
+    - kantikum_1kron29
+    - kantikum_iz12
+    - kantikum_iz61
     ranní chvály: rchne1t
     2. nešpory:
-    - 110
-    - 145i
-    - zj19
+    - zalm110
+    - zalm145i
+    - kantikum_zj19
   Ježíše Krista, nejvyššího a věčného kněze:
     modlitba se čtením:
-    - 2
-    - 40i
-    - 85
+    - zalm2
+    - zalm40i
+    - zalm85
     ranní chvály: rchne1t
     nešpory:
-    - 110
-    - 111
-    - kol1
+    - zalm110
+    - zalm111
+    - kantikum_kol1
   Nejsvětější Trojice (slavnost):
     1. nešpory:
-    - 113
-    - 147ii
-    - ef1
+    - zalm113
+    - zalm147ii
+    - kantikum_ef1
     modlitba se čtením:
-    - 8
-    - 33ci
-    - 33cii
+    - zalm8
+    - zalm33ci
+    - zalm33cii
     vigilie: "(Jako o nedělích v mezidobí.)"
     ranní chvály: rchne1t
     2. nešpory: ne1t
   Těla a Krve Páně (slavnost):
     1. nešpory:
-    - 111
-    - 147ii
-    - zj11
+    - zalm111
+    - zalm147ii
+    - kantikum_zj11
     modlitba se čtením:
-    - 23
-    - 42
-    - 81
+    - zalm23
+    - zalm42
+    - zalm81
     vigilie:
-    - pr9
-    - jer31
-    - mdr16
+    - kantikum_pr9
+    - kantikum_jer31
+    - kantikum_mdr16
     ranní chvály: rchne1t
     2. nešpory:
-    - 110
-    - 116ii
-    - zj19
+    - zalm110
+    - zalm116ii
+    - kantikum_zj19
   Nejsvětějšího Srdce Ježíšova (slavnost):
     1. nešpory:
-    - 113
-    - 146
-    - zj4
+    - zalm113
+    - zalm146
+    - kantikum_zj4
     modlitba se čtením:
-    - 36
-    - 61
-    - 98
+    - zalm36
+    - zalm61
+    - zalm98
     vigilie:
-    - iz12
-    - 1sam2i
-    - 1sam2ii
+    - kantikum_iz12
+    - kantikum_1sam2i
+    - kantikum_1sam2ii
     ranní chvály: rchne1t
     2. nešpory:
-    - 110
-    - 111
-    - flp2
+    - zalm110
+    - zalm111
+    - kantikum_flp2
 Sanktorál:
   sv. Jana, apoštola a evangelisty (svátek, 27.12.):
     modlitba se čtením:
-    - 19a
-    - 64
-    - 99
+    - zalm19a
+    - zalm64
+    - zalm99
   Uvedení Páně do chrámu (svátek, 2.2.):
     1. nešpory:
-    - 113
-    - 147ii
-    - flp2
+    - zalm113
+    - zalm147ii
+    - kantikum_flp2
     modlitba se čtením:
-    - 2
-    - 19a
-    - 45i
+    - zalm2
+    - zalm19a
+    - zalm45i
     - "(+)"
-    - 45ii
+    - zalm45ii
     vigilie:
-    - iz9
-    - iz26
-    - iz66
+    - kantikum_iz9
+    - kantikum_iz26
+    - kantikum_iz66
     ranní chvály: rchne1t
     2. nešpory:
-    - 110
-    - 130
-    - kol1
+    - zalm110
+    - zalm130
+    - kantikum_kol1
   Zvěstování Páně (slavnost, 25.3.):
     1. nešpory:
-    - 113
-    - 147ii
-    - flp2
+    - zalm113
+    - zalm147ii
+    - kantikum_flp2
     modlitba se čtením:
-    - 2
-    - 19a
-    - 45i
+    - zalm2
+    - zalm19a
+    - zalm45i
     - "(+)"
-    - 45ii
+    - zalm45ii
     vigilie:
-    - iz9
-    - iz26
-    - iz66
+    - kantikum_iz9
+    - kantikum_iz26
+    - kantikum_iz66
     ranní chvály: rchne1t
     2. nešpory:
-    - 110
-    - 130
-    - kol1
+    - zalm110
+    - zalm130
+    - kantikum_kol1
   Proměnění Páně (svátek, 6.8.):
     1. nešpory:
-    - 113
-    - 117
-    - zj19
+    - zalm113
+    - zalm117
+    - kantikum_zj19
     modlitba se čtením:
-    - 84
-    - 97
-    - 99
+    - zalm84
+    - zalm97
+    - zalm99
     vigilie: "(Jako o slavnosti Ježíše Krista Krále.)"
     ranní chvály: rchne1t
     2. nešpory:
-    - 110
-    - 121
-    - 1tim3
+    - zalm110
+    - zalm121
+    - kantikum_1tim3
   Povýšení svatého kříže (svátek, 14.9.):
     1. nešpory:
-    - 147i
-    - 147ii
-    - flp2
+    - zalm147i
+    - zalm147ii
+    - kantikum_flp2
     modlitba se čtením:
-    - 2
-    - 8
-    - 96
+    - zalm2
+    - zalm8
+    - zalm96
     vigilie: "(Jako o slavnosti Ježíše Krista Krále.)"
     ranní chvály: rchne1t
     2. nešpory:
-    - 110
-    - 116ii
-    - zj4
+    - zalm110
+    - zalm116ii
+    - kantikum_zj4
   sv. Michaela, Gabriela a Rafaela, archandělů (svátek, 29.9.):
     modlitba se čtením:
-    - 97
-    - 103ci
-    - 103cii
+    - zalm97
+    - zalm103ci
+    - zalm103cii
     vigilie: "(Jako o slavnosti Všech svatých.)"
     ranní chvály: rchne1t
     nešpory:
-    - 8
-    - 138
-    - kol1
+    - zalm8
+    - zalm138
+    - kantikum_kol1
   Svatých andělů strážných (památka, 2.10.):
     ranní chvály: rchne1t
     nešpory:
-    - 34i
-    - 34ii
-    - zj11
+    - zalm34i
+    - zalm34ii
+    - kantikum_zj11
   Všech svatých (slavnost, 1.11.):
     1. nešpory:
-    - 113
-    - 147ii
-    - zj19
+    - zalm113
+    - zalm147ii
+    - kantikum_zj19
     modlitba se čtením:
-    - 8
-    - 15
-    - 16
+    - zalm8
+    - zalm15
+    - zalm16
     vigilie:
-    - tob13i
-    - tob13cii
-    - tob13ciii
+    - kantikum_tob13i
+    - kantikum_tob13cii
+    - kantikum_tob13ciii
     ranní chvály: rchne1t
     2. nešpory:
-    - 110
-    - 116ii
-    - zj4
+    - zalm110
+    - zalm116ii
+    - kantikum_zj4
 Společné texty:
   O posvěcení kostela:
     1. nešpory:
-    - 147i
-    - 147ii
-    - zj19
+    - zalm147i
+    - zalm147ii
+    - kantikum_zj19
     - "(v době postní)"
-    - kol1
+    - kantikum_kol1
     modlitba se čtením:
-    - 24
-    - 84
-    - 87
+    - zalm24
+    - zalm84
+    - zalm87
     vigilie:
-    - tob13ii
-    - iz2ci
-    - jer7
+    - kantikum_tob13ii
+    - kantikum_iz2ci
+    - kantikum_jer7
     ranní chvály: rchne1t
     2. nešpory:
-    - 46
-    - 122
-    - zj19
+    - zalm46
+    - zalm122
+    - kantikum_zj19
     - "(v době postní)"
-    - zj15
+    - kantikum_zj15
   O Panně Marii:
     1. nešpory:
-    - 113
-    - 147ii
-    - ef1
+    - zalm113
+    - zalm147ii
+    - kantikum_ef1
     modlitba se čtením:
-    - 24
-    - 46
-    - 87
+    - zalm24
+    - zalm46
+    - zalm87
     vigilie:
-    - iz61cii
-    - iz62
-    - sir39
+    - kantikum_iz61cii
+    - kantikum_iz62
+    - kantikum_sir39
     ranní chvály: rchne1t
     2. nešpory:
-    - 122
-    - 127
-    - ef1
+    - zalm122
+    - zalm127
+    - kantikum_ef1
   O apoštolech:
     1. nešpory:
-    - 117
-    - 147ii
-    - ef1
+    - zalm117
+    - zalm147ii
+    - kantikum_ef1
     modlitba se čtením:
-    - 19a
-    - 64
-    - 97
+    - zalm19a
+    - zalm64
+    - zalm97
     vigilie:
-    - iz61ci
-    - mdr3ii
-    - mdr10
+    - kantikum_iz61ci
+    - kantikum_mdr3ii
+    - kantikum_mdr10
     ranní chvály: rchne1t
     2. nešpory:
-    - 116ii
-    - 126
-    - ef1
+    - zalm116ii
+    - zalm126
+    - kantikum_ef1
   O více mučednících:
     1. nešpory:
-    - 118i
-    - 118ii
-    - 1petr2
+    - zalm118i
+    - zalm118ii
+    - kantikum_1petr2
     modlitba se čtením:
-    - 2
-    - 33ci
-    - 33cii
+    - zalm2
+    - zalm33ci
+    - zalm33cii
     vigilie:
-    - mdr3i
-    - mdr3ii
-    - mdr10
+    - kantikum_mdr3i
+    - kantikum_mdr3ii
+    - kantikum_mdr10
     ranní chvály: rchne1t
     2. nešpory:
-    - 116i
-    - 116ii
-    - zj4
+    - zalm116i
+    - zalm116ii
+    - kantikum_zj4
   O jednom mučedníkovi nebo o jedné mučednici:
     1. nešpory:
-    - 118i
+    - zalm118i
     - "(+)"
-    - 118ii
-    - 118iii
-    - 1petr2
+    - zalm118ii
+    - zalm118iii
+    - kantikum_1petr2
     modlitba se čtením:
-    - 2
-    - 11
-    - 17i
+    - zalm2
+    - zalm11
+    - zalm17i
     - "(+)"
-    - 17ii
+    - zalm17ii
     vigilie:
-    - jer17
-    - sir14
-    - sir31
+    - kantikum_jer17
+    - kantikum_sir14
+    - kantikum_sir31
     ranní chvály: rchne1t
     2. nešpory:
-    - 116i
-    - 116ii
-    - zj4
+    - zalm116i
+    - zalm116ii
+    - kantikum_zj4
   O duchovních pastýřích:
     1. nešpory:
-    - 113
-    - 146
-    - ef1
+    - zalm113
+    - zalm146
+    - kantikum_ef1
     modlitba se čtením:
-    - 21
-    - 92ci
-    - 92cii
+    - zalm21
+    - zalm92ci
+    - zalm92cii
     ranní chvály: rchne1t
     2. nešpory:
-    - 15
-    - 112
-    - zj15
+    - zalm15
+    - zalm112
+    - kantikum_zj15
   O pannách:
     1. nešpory:
-    - 113
-    - 147ii
-    - ef1
+    - zalm113
+    - zalm147ii
+    - kantikum_ef1
     modlitba se čtením:
-    - 19a
-    - 45i
-    - 45ii
+    - zalm19a
+    - zalm45i
+    - zalm45ii
     ranní chvály: rchne1t
     2. nešpory:
-    - 122
-    - 127
-    - ef1
+    - zalm122
+    - zalm127
+    - kantikum_ef1
   O svatých mužích:
     1. nešpory:
-    - 113
-    - 146
-    - ef1
+    - zalm113
+    - zalm146
+    - kantikum_ef1
     modlitba se čtením:
-    - 21
-    - 92ci
-    - 92cii
+    - zalm21
+    - zalm92ci
+    - zalm92cii
     vigilie:
-    - jer17
-    - sir14
-    - sir31
+    - kantikum_jer17
+    - kantikum_sir14
+    - kantikum_sir31
     ranní chvály: rchne1t
     2. nešpory:
-    - 15
-    - 112
-    - zj15
+    - zalm15
+    - zalm112
+    - kantikum_zj15
   O svatých ženách:
     1. nešpory:
-    - 113
-    - 147ii
-    - ef1
+    - zalm113
+    - zalm147ii
+    - kantikum_ef1
     modlitba se čtením:
-    - 19a
-    - 45i
-    - 45ii
+    - zalm19a
+    - zalm45i
+    - zalm45ii
     vigilie:
-    - jer17
-    - sir14
-    - sir31
+    - kantikum_jer17
+    - kantikum_sir14
+    - kantikum_sir31
     ranní chvály: rchne1t
     2. nešpory:
-    - 122
-    - 127
-    - ef1
+    - zalm122
+    - zalm127
+    - kantikum_ef1
   Za zemřelé:
     modlitba se čtením:
-    - 40i
-    - 40ii
-    - 42
+    - zalm40i
+    - zalm40ii
+    - zalm42
     ranní chvály:
-    - 51
-    - iz38
-    - 146
+    - zalm51
+    - kantikum_iz38
+    - zalm146
     - "(nebo)"
-    - 150
+    - zalm150
     modlitba uprostřed dne:
-    - 70
-    - 85
-    - 86
+    - zalm70
+    - zalm85
+    - zalm86
     nešpory:
-    - 121
-    - 130
-    - flp2
+    - zalm121
+    - zalm130
+    - kantikum_flp2

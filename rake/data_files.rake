@@ -76,5 +76,24 @@ task proper: 'data/proper_psalms.yaml'
 
 file 'data/proper_psalms.yaml' => [iafile('antifonar/svatecnizaltar_index.yml'), __FILE__] do |t|
   data = YAML.load(File.read(t.prerequisites[0]))
+  data.each_value do |v1|
+    v1.each_value do |v2|
+      v2.transform_values! do |v3|
+        next v3 unless v3.is_a? Array
+
+        v3.collect do |i|
+          case i.to_s
+          when /^\d+(?!kron|sam|petr|tim)/
+            "zalm#{i}"
+          when /^\((.*?)\)$/
+            i
+          else
+            "kantikum_#{i}"
+          end
+        end
+      end
+    end
+  end
+
   File.write t.name, YAML.dump(data)
 end

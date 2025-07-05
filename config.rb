@@ -316,7 +316,7 @@ helpers do
       end
 
     if psalms == 'rchne1t'
-      psalms = ['63', 'dan3iii', '149']
+      psalms = %w(zalm63 kantikum_dan3iii zalm149)
     end
 
     unless psalms.is_a? Array
@@ -325,21 +325,15 @@ helpers do
     end
 
     psalms_hash = psalms.collect do |i|
-      path_name =
-        case i.to_s # TODO partial duplicate of code block from _proper_psalms_listing.html.slim
-        when /^(kantikum_)?(1tim3|zj19)$/
-        # TODO
-        when /^\d+(?!kron|sam|petr)/
-          "zalm#{i}"
-        when /^\((.*?)\)$/
-        # rubric, not a psalm
-        when /^(zalm|kantikum_)/ # full pathname as used in the psalter data file
-          i
-        else
-          "kantikum_#{i}"
-        end
-      (path_name ? Psalms[path_name].data_path : '') + '::'
-    end.join(';')
+      case i.to_s # TODO partial duplicate of code block from _proper_psalms_listing.html.slim
+      when /kantikum_(1tim3|zj19)$/
+        nil # TODO
+      when /^(zalm|kantikum)/
+        i
+      else
+        nil
+      end
+    end.compact.collect {|path_name| (path_name ? Psalms[path_name].data_path : '') + '::' }.join(';')
 
     link_to label, "hodinka/#{page}.html#!" + psalms_hash
   end

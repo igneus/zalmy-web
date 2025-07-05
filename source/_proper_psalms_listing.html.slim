@@ -24,14 +24,12 @@
 
       - psalms.each do |i|
         - case i.to_s
-        - when '1tim3'
+        - when 'kantikum_1tim3'
           = partial 'proper_tone_link', locals: {name: '1 Tim 3', link: in_adiutorium_sheet_link('kant1Tim3')}
-        - when 'zj19'
+        - when 'kantikum_zj19'
           = zj19_tone_link
-        - when /^\d+(?!kron|sam|petr)/
-          = psalm_link "zalm#{i}"
         - when /^\((.*?)\)$/
           em= $1
         - else
-          = psalm_link "kantikum_#{i}"
+          = psalm_link i
         '
