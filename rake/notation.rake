@@ -19,9 +19,9 @@ PsalmToneGroup
   end
 
   # the hardcoded fake dependency of all output files on
-  # psalmodie-1.svg is intentional, it prevents lilypond to be started
+  # psalmodie-1.svg is intentional - it prevents lilypond from being started
   # in several parallel instances, while it only really needs to run once
-  file output => [tmpfile("psalmodie-1.svg"), __FILE__] do |t|
+  file output => [tmpfile("psalmodie-1.svg"), svg_page, __FILE__] do |t|
     # crop svg
     sh 'inkscape',
        '--actions', 'select-all;fit-canvas-to-selection;export-overwrite;export-do',
