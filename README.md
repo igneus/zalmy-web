@@ -8,7 +8,7 @@ and tools of the [In adiutorium][ia] project.
 
 - Ruby
 - LilyPond
-- Inkscape 1.2 (ab/used for automated SVG cropping, can easily be replaced by your tool of choice - see `Rakefile`)
+- Inkscape 1.2 (ab/used for automated SVG cropping, can easily be replaced by your tool of choice - see `rake/notation.rake`)
 
 ## Building
 
