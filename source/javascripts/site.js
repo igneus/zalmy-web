@@ -75,6 +75,8 @@ const setPointing = (link) => {
 
   psalm.dataset.tone = ds.tone;
   psalm.dataset.differentia = ds.differentia;
+
+  psalm.querySelector('.title a').href = `/${psalm.dataset.path}.html#!${ds.tone}:${ds.differentia}`;
 };
 
 const markSelected = (link) => {
