@@ -74,6 +74,7 @@ end
 desc 'table of proper psalms for feasts'
 task proper: 'data/proper_psalms.yaml'
 
-file 'data/proper_psalms.yaml' => [iafile('antifonar/svatecnizaltar_index.yml')] do |t|
-  cp t.prerequisites[0], t.name
+file 'data/proper_psalms.yaml' => [iafile('antifonar/svatecnizaltar_index.yml'), __FILE__] do |t|
+  data = YAML.load(File.read(t.prerequisites[0]))
+  File.write t.name, YAML.dump(data)
 end
