@@ -55,6 +55,10 @@ module Psalms
     def sort_key
       [BIBLE_BOOK_RE.match(title).yield_self {|x| BIBLE_BOOKS.index(x && x[0]) } ] + title.scan(/\d+/).collect(&:to_i)
     end
+
+    def has_doxology?
+      path_name != 'kantikum_dan3iii'
+    end
   end
 
   def all
@@ -108,20 +112,17 @@ class PsalmMarkup
     path = psalm.path
     STDERR.puts "pointing #{path}"
 
-    doxology =
-      if File.basename(path) =~ /dan3iii/
-        ''
-      else
-        "\n" + File.read(File.join(File.dirname(path), 'doxologie.zalm'))
-      end
-
-    @pslm_parsed = Pslm::PslmReader.new.read_str(
+    pslm = Pslm::PslmReader.new
+    @pslm_parsed = pslm.read_str(
       File.read(path)
         .strip
         .gsub('\zalmVersUpozorneni{2}', '') # get rid of hardcoded LaTeX markup in Benedictus
         .gsub('\textit{', '')
-        .gsub('}', '') +
-      doxology
+        .gsub('}', '')
+    )
+
+    @doxology = pslm.read_str(
+      File.read(File.join(File.dirname(path), 'doxologie.zalm')).strip
     )
   end
 
@@ -132,6 +133,7 @@ class PsalmMarkup
     # from within the Markaby DSL
     psalm = @psalm
     pslm_parsed = @pslm_parsed
+    doxology = @doxology
 
     Markaby::Builder.new do
       div.psalm('data-path': psalm.data_path) do
@@ -145,6 +147,22 @@ class PsalmMarkup
                 v.parts
                   .collect {|vp| vpm.(vp.pos, vp, v == s.verses.last && vp == v.parts.last) }
                   .join("\n")
+              end
+            end
+          end
+        end
+        if psalm.has_doxology?
+          # TODO The only real reason for this ugly duplicate code block
+          # is the need to add class 'doxology' to the doxology strophe.
+          # Find a way to get rid of this.
+          doxology.strophes.each do |s|
+            div.strophe.doxology do
+              doxology.strophes[0].verses.each do |v|
+                div.verse do
+                  v.parts
+                    .collect {|vp| vpm.(vp.pos, vp, v == s.verses.last && vp == v.parts.last) }
+                    .join("\n")
+                end
               end
             end
           end
@@ -346,19 +364,30 @@ helpers do
 
     psalms_hash =
       psalms
-        .select {|i| i.to_s =~ /^(zalm|kantikum)/ }
+        .select {|i| i.to_s =~ /^(zalm|kantikum)/ || i == '(+)' }
         .collect do |path_name|
-      if path_name =~ /(zj19|1tim3)/
-        # The canticles are currently not available on the website
-        # and therefore unknown to Psalms, but in this particular
-        # case it's preferable to build an URL hash with an invalid
-        # reference and let the hour page report canticle loading error
+      case path_name
+      when /(zj19|1tim3)/
+        # These canticles are unknown to Psalms, but we want the hour links
+        # to reference them anyway.
         "kantikum/#{$1}"
+      when '(+)'
+        '+'
       else
         Psalms[path_name].data_path
-      end +
-        '::'
-    end.join(';')
+      end
+    end
+        .inject([]) do |memo, i|
+      if i == '+' || memo.last&.ends_with?('+')
+        memo.last << i
+      else
+        memo << i
+      end
+
+      memo
+    end
+        .collect {|i| i + '::' }
+        .join(';')
 
     link_to label, "hodinka/#{page}.html#!" + psalms_hash
   end

@@ -76,7 +76,9 @@ const setPointing = (link) => {
   psalm.dataset.tone = ds.tone;
   psalm.dataset.differentia = ds.differentia;
 
-  psalm.querySelector('.title a').href = `/${psalm.dataset.path}.html#!${ds.tone}:${ds.differentia}`;
+  psalm
+    .querySelectorAll('.title a')
+    .forEach(i => i.href = i.href.replace(/(#.*)?$/, `#!${ds.tone}:${ds.differentia}`));
 };
 
 const markSelected = (link) => {
@@ -144,23 +146,18 @@ const multiplePsalmsPage = {
       }
 
       const entry = entries[i];
-      const wrapper = node.parentElement;
       if (entry.psalm != undefined && node.dataset.path != entry.psalm) {
         if (!isValidPsalmPath(entry.psalm)) {
           $(node).replaceWith('<p class="error">URL obsahuje neplatnou referenci na žalm, žalm nebylo možné načíst</p>');
           return;
         }
 
-        // load the specified psalm
         node.classList.add('loading');
-        $.ajax({
-          url: `/${entry.psalm}.html`,
-          error: () => { $(node).replaceWith(`<p class="error">Žalm/kantikum se nepodařilo stáhnout (${entry.psalm})</p>`) },
-          success: (data) => {
-            $(node).replaceWith($('.psalm', $(data)));
-            applyPsalmTone(entry, wrapper.querySelector('.psalm'));
-          }
-        });
+        if (entry.psalm.includes('+')) {
+          loadJoinedPsalms(entry.psalm, entry, node);
+        } else {
+          loadPsalm(entry.psalm, entry, node);
+        }
       } else {
         applyPsalmTone(entry, node);
       }
@@ -191,7 +188,7 @@ const parseHash = (hash) => {
 };
 
 const isValidPsalmPath =
-      (path) => /^(zalm|kantikum)\/[a-z0-9]+$/.test(path);
+      (path) => /^((zalm|kantikum)\/[a-z0-9]+\+?)*$/.test(path);
 
 const applyPsalmTone = (tone, psalmNode) => {
   const wrapper = psalmNode.parentElement;
@@ -214,6 +211,51 @@ const applyPsalmTone = (tone, psalmNode) => {
   } else {
     pointingLink.click();
   }
+};
+
+// Accepts a single psalm reference (the format used in data-path
+// and the URL hash) and a .psalm node, loads the specified psalm
+// into the node.
+const loadPsalm = (dataPath, psalmTone, node) => {
+  const wrapper = node.parentElement;
+  $.get(`/${dataPath}.html`).then(
+    // success
+    (data) => {
+      $(node).replaceWith($('.psalm', $(data)));
+      applyPsalmTone(psalmTone, wrapper.querySelector('.psalm'));
+    },
+    // failure
+    () => { $(node).replaceWith(`<p class="error">Žalm/kantikum se nepodařilo stáhnout (${dataPath})</p>`) }
+  );
+};
+
+// Like the above, but loads multiple psalms and joins them into one.
+const loadJoinedPsalms = (dataPaths, psalmTone, node) => {
+  const wrapper = node.parentElement;
+  const load = Promise.all(
+    dataPaths
+      .split('+')
+      .map((dp) => $.get(`/${dp}.html`))
+  ).then(
+    // success
+    (data) => {
+      const psalms = data.map(i => $('.psalm', $(i)));
+      const joined = psalms[0];
+      const title = $('.title', joined);
+      for (let i = 1; i < psalms.length; i++) {
+        title
+          .append(' + ')
+          .append($('.title a', psalms[i]));
+        joined.append(psalms[i].children());
+        console.log($('.title a', psalms[i]));
+      }
+      $(node).replaceWith(joined);
+      joined[0].dataset.path = dataPaths;
+      applyPsalmTone(psalmTone, wrapper.querySelector('.psalm'));
+    },
+    // failure
+    () => { $(node).replaceWith(`<p class="error">Žalm/kantikum se nepodařilo stáhnout (${dataPaths})</p>`) }
+  );
 };
 
 // settings UI actions
