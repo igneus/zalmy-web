@@ -364,19 +364,21 @@ helpers do
 
     psalms_hash =
       psalms
-        .select {|i| i.to_s =~ /^(zalm|kantikum)/ || i == '(+)' }
         .collect do |path_name|
       case path_name
       when /(zj19|1tim3)/
         # These canticles are unknown to Psalms, but we want the hour links
         # to reference them anyway.
         "kantikum/#{$1}"
-      when '(+)'
+      when '(+)', /^\(.*?může připojit/
         '+'
-      else
+      when /^(zalm|kantikum)/
         Psalms[path_name].data_path
+      else
+        nil
       end
     end
+        .compact
         .inject([]) do |memo, i|
       if i == '+' || memo.last&.ends_with?('+')
         memo.last << i
