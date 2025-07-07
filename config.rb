@@ -276,8 +276,8 @@ end
 
 # fake pages for the currently unsupported responsorial canticles
 [
-  Psalms::Psalm.new('srov. Zj 19', 'kantikum_zj19.zalm', 'kantikum_zj19', true),
-  Psalms::Psalm.new('1 Tim 3', 'kantikum_1tim3.zalm', 'kantikum_1tim3', true),
+  Psalms::Psalm.new('srov. Zj 19, 1-7', 'kantikum_zj19.zalm', 'kantikum_zj19', true),
+  Psalms::Psalm.new('1 Tim 3, 16', 'kantikum_1tim3.zalm', 'kantikum_1tim3', true),
 ].each do |i|
   proxy(
     i.web_path,
