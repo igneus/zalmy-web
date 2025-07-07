@@ -127,4 +127,12 @@ a {
   }
 
   .psalm .title a { text-decoration: none; }
+
+  .error {
+    padding: 0; border: none; color: $text-color;
+    a::after { content: ": " attr(href); }
+  }
+  .psalm-wrapper:has( .error) {
+    .psalm-tone-selector, .notation { display: none; }
+  }
 }
