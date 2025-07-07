@@ -6,6 +6,3 @@ h1 Modlitba se čtením
 
 - %w(1 2 3).each do |num|
   = partial 'psalm', locals: {psalm: psalms["zalm#{num}"]}
-
-- content_for :footer do
-  = partial 'settings'
