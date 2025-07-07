@@ -13,4 +13,4 @@ h1= psalm.title
       | opravit zdrojový soubor
       =< psalm.is_canticle ? 'kantika' : 'žalmu'
     | nebo
-    a< href='https://github.com/igneus/zalmy-web/issues' chybu nahlásit
+    =< link_to 'chybu nahlásit', href='https://github.com/igneus/zalmy-web/issues/new?' + {body: "Chyba na stránce `#{current_page.path}`:"}.to_query
