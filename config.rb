@@ -340,8 +340,9 @@ helpers do
     partial 'proper_tone_link', locals: {name: 'srov. Zj 19', link: special_canticle_urls['kantikum_zj19']}
   end
 
-  def hour_link(label, psalms)
-    page =
+  def hour_link(label, psalms, hour: nil)
+    page = hour
+    page ||=
       case label
       when /nešpory/
         'nespory'

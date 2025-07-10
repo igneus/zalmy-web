@@ -44,7 +44,7 @@ title: Každodenní texty
 
 <h2 id="rch">Ranní chvály svátků</h2>
 <p>
-  Nedělní žalmy z prvního týdne žaltáře:
+  <%= hour_link 'Z neděle prvního týdne žaltáře', %w(zalm63 kantikum_dan3iii zalm149), hour: 'ranni' %>:
 </p>
 <p class="psalms-list">
   <%= psalm_link 'zalm63' %>
@@ -52,25 +52,9 @@ title: Každodenní texty
   <%= psalm_link 'zalm149' %>
 </p>
 
-<h2>Doplňovací cyklus modlitby uprostřed dne</h2>
-
-<h3>Dopoledne</h3>
-<p class="psalms-list">
-  <%= psalm_link 'zalm120' %>
-  <%= psalm_link 'zalm121' %>
-  <%= psalm_link 'zalm122' %>
-</p>
-
-<h3>V poledne</h3>
-<p class="psalms-list">
-  <%= psalm_link 'zalm123' %>
-  <%= psalm_link 'zalm124' %>
-  <%= psalm_link 'zalm125' %>
-</p>
-
-<h3>Odpoledne</h3>
-<p class="psalms-list">
-  <%= psalm_link 'zalm126' %>
-  <%= psalm_link 'zalm127' %>
-  <%= psalm_link 'zalm128' %>
-</p>
+<% data.psalter.each_pair.find {|key, val| key =~ /Doplňovací cyklus/ }.yield_self do |title, hours| %>
+  <h2><%= title %></h2>
+  <% hours.each_pair do |subtitle, psalms| %>
+    <%= partial 'psalms_list', locals: {title: subtitle, items: psalms} %>
+  <% end %>
+<% end %>
