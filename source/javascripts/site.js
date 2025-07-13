@@ -88,6 +88,16 @@ const markSelected = (link) => {
   link.parentElement.classList.add(cls);
 };
 
+const effectPointingLink = (link) => {
+  if (link.classList.contains('selected')) {
+    return;
+  }
+
+  setNotation(link);
+  setPointing(link);
+  markSelected(link);
+};
+
 /* URL hash handling strategies govern hash update when a pointing link
    is clicked and applying settings from the URL hash to the page content
    when the hash is changed.
@@ -102,25 +112,38 @@ const singlePsalmPage = {
   // no need to do anything, the plain HTML link changes URL hash as needed
   onLinkClick: (event) => {},
 
+  buildHash: () => {
+    const ds = document.querySelector('.psalm').dataset;
+    return ds.tone + ':' + ds.differentia;
+  },
+
   // hash contains single psalm tone and differentia, e.g. "#!VIII:G"
   onHashChange: () => {
     const hash = window.location.hash;
     const tones = parseHash(hash);
     const tone = tones.length > 0 ? tones[0] : {};
     applyPsalmTone(tone, document.querySelector('.psalm'));
+
+    return Promise.resolve(true);
   },
 };
 
 const multiplePsalmsPage = {
   // the clicked link's href contains just a psalm tone,
   // we intercept URL fragment update to keep account of all psalms on the page
-  onLinkClick: (event) => {
+  onLinkClick: function (event) {
     event.preventDefault();
-    window.location.hash = '#!' +
-      Array.from(document.querySelectorAll('.psalm:not(.skipped)')).map((ps) => {
+    window.location.hash = '#!' + this.buildHash();
+  },
+
+  buildHash: () => {
+    return Array
+      .from(document.querySelectorAll('.psalm:not(.skipped)'))
+      .map((ps) => {
         const ds = ps.dataset;
         return [ds.path, ds.tone, ds.differentia].join(':');
-      }).join(';')
+      })
+      .join(';');
   },
 
   // hash contains a list of one or more psalms/canticles and corresponding
@@ -140,28 +163,30 @@ const multiplePsalmsPage = {
     }
 
     // match hash entries to DOM nodes
-    Array.from(document.querySelectorAll('.psalm:not(.skipped)')).map((node, i) => {
-      if (i >= entries.length) {
-        return;
-      }
+    return Promise.all(
+      Array
+        .from(document.querySelectorAll('.psalm:not(.skipped)'))
+        .map((node, i) => {
+          if (i >= entries.length) {
+            return Promise.resolve(applyPsalmTone({}, node));
+          }
 
-      const entry = entries[i];
-      if (entry.psalm != undefined && node.dataset.path != entry.psalm) {
-        if (!isValidPsalmPath(entry.psalm)) {
-          $(node).replaceWith('<p class="error">URL obsahuje neplatnou referenci na žalm, žalm nebylo možné načíst</p>');
-          return;
-        }
+          const entry = entries[i];
+          if (entry.psalm != undefined && node.dataset.path != entry.psalm) {
+            if (!isValidPsalmPath(entry.psalm)) {
+              $(node).replaceWith('<p class="error">URL obsahuje neplatnou referenci na žalm, žalm nebylo možné načíst</p>');
+              return Promise.resolve(true);
+            }
 
-        node.classList.add('loading');
-        if (entry.psalm.includes('+')) {
-          loadJoinedPsalms(entry.psalm, entry, node);
-        } else {
-          loadPsalm(entry.psalm, entry, node);
-        }
-      } else {
-        applyPsalmTone(entry, node);
-      }
-    });
+            node.classList.add('loading');
+            return (entry.psalm.includes('+') ?
+                    loadJoinedPsalms(entry.psalm, entry, node) :
+                    loadPsalm(entry.psalm, entry, node));
+          } else {
+            return Promise.resolve(applyPsalmTone(entry, node));
+          }
+        })
+    );
   },
 };
 
@@ -192,7 +217,7 @@ const isValidPsalmPath =
 
 const applyPsalmTone = (tone, psalmNode) => {
   const wrapper = psalmNode.parentElement;
-  const pointingLink = wrapper.querySelector('a[data-tone="' + tone.tone + '"][data-differentia = "' + tone.differentia + '"]');
+  let pointingLink = wrapper.querySelector('a[data-tone="' + tone.tone + '"][data-differentia = "' + tone.differentia + '"]');
 
   if (pointingLink == null) {
     if (tone.tone != undefined) {
@@ -205,12 +230,12 @@ const applyPsalmTone = (tone, psalmNode) => {
     }
 
     const allPointingLinks = wrapper.querySelectorAll('.psalm-tone-selector a');
-    randomElement(
+    pointingLink = randomElement(
       Array.from(allPointingLinks).filter((link) => !link.dataset.differentia.endsWith('*'))
-    ).click();
-  } else {
-    pointingLink.click();
+    );
   }
+
+  effectPointingLink(pointingLink);
 };
 
 // Accepts a single psalm reference (the format used in data-path
@@ -218,7 +243,7 @@ const applyPsalmTone = (tone, psalmNode) => {
 // into the node.
 const loadPsalm = (dataPath, psalmTone, node) => {
   const wrapper = node.parentElement;
-  $.get(`/${dataPath}.html`).then(
+  return $.get(`/${dataPath}.html`).then(
     // success
     (data) => {
       $(node).replaceWith($('.psalm', $(data)));
@@ -232,7 +257,7 @@ const loadPsalm = (dataPath, psalmTone, node) => {
 // Like the above, but loads multiple psalms and joins them into one.
 const loadJoinedPsalms = (dataPaths, psalmTone, node) => {
   const wrapper = node.parentElement;
-  const load = Promise.all(
+  return Promise.all(
     dataPaths
       .split('+')
       .map((dp) => $.get(`/${dp}.html`))
@@ -282,14 +307,23 @@ window.onload = () => {
 
   pointingLinks.forEach(el => {
     el.addEventListener('click', (event) => {
-      setNotation(el);
-      setPointing(el);
-      markSelected(el);
+      effectPointingLink(el);
       urlHashStrategy.onLinkClick(event);
     });
   });
 
-  urlHashStrategy.onHashChange(); // apply initial hash contents
+  // changing window.location.hash adds a new entry to the browser history,
+  // which is undesirable when loading the initial contents and
+  // setting the initial hash => replace current history entry instead
+  const initHash =
+        () => window.history.replaceState(
+          null, '',
+          window.location.href.replace(/(#!.*)?$/, '#!' + urlHashStrategy.buildHash())
+        );
+
+  urlHashStrategy
+    .onHashChange() // apply initial hash contents
+    .then(initHash, initHash);
   window.onhashchange = urlHashStrategy.onHashChange;
 
   const newlinesCheckbox = document.getElementById('newlines');
