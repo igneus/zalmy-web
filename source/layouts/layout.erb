@@ -5,8 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <%# Use the title from a page's frontmatter if it has one %>
     <title><%= current_page.data.title || psalm.title %></title>
+    <meta name="keywords" value="<%= current_page.data.keywords&.yield_self {|kw| kw + ', ' } %>žalmy, kantika, zpívané žalmy, psalmodie, denní modlitba církve, liturgie hodin, chorální nápěvy">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
