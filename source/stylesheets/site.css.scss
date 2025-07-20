@@ -65,7 +65,7 @@ a {
   }
 
   // joined psalms: display only a single title and doxology
-  .strophe + .title { display: none; }
+  .strophe + .title,
   .doxology:has(+ .strophe), .doxology:has(+ .title) { display: none; }
 
   .verse { padding-left: 1em; text-indent: -1em; }
