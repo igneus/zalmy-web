@@ -243,15 +243,17 @@ const applyPsalmTone = (tone, psalmNode) => {
 // into the node.
 const loadPsalm = (dataPath, psalmTone, node) => {
   const wrapper = node.parentElement;
-  return $.get(`/${dataPath}.html`).then(
-    // success
-    (data) => {
-      $(node).replaceWith($('.psalm', $(data)));
-      applyPsalmTone(psalmTone, wrapper.querySelector('.psalm'));
-    },
-    // failure
-    () => { $(node).replaceWith(`<p class="error">Žalm/kantikum se nepodařilo stáhnout (${dataPath})</p>`) }
-  );
+  return fetch(`/${dataPath}.html`)
+    .then(response => response.text())
+    .then(
+      // success
+      (data) => {
+        $(node).replaceWith($('.psalm', $(data)));
+        applyPsalmTone(psalmTone, wrapper.querySelector('.psalm'));
+      },
+      // failure
+      () => { $(node).replaceWith(`<p class="error">Žalm/kantikum se nepodařilo stáhnout (${dataPath})</p>`) }
+    );
 };
 
 // Like the above, but loads multiple psalms and joins them into one.
@@ -260,7 +262,7 @@ const loadJoinedPsalms = (dataPaths, psalmTone, node) => {
   return Promise.all(
     dataPaths
       .split('+')
-      .map((dp) => $.get(`/${dp}.html`))
+      .map(dp => fetch(`/${dp}.html`).then(response => response.text()))
   ).then(
     // success
     (data) => {
