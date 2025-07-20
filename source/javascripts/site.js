@@ -277,7 +277,6 @@ const loadJoinedPsalms = (dataPaths, psalmTone, node) => {
           .append(' + ')
           .append($('.title a', psalms[i]));
         joined.append(psalms[i].children());
-        console.log($('.title a', psalms[i]));
       }
       $(node).replaceWith(joined);
       joined[0].dataset.path = dataPaths;
