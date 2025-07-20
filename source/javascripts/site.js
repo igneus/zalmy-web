@@ -37,7 +37,10 @@ const defaultTones = {
 const wrapperForLink = (link) => link.parentElement.parentElement.parentElement;
 
 const setNotation = (link) => {
-  wrapperForLink(link).querySelector('.notation').setAttribute('src', link.dataset.image);
+  const ds = link.dataset;
+  const img = wrapperForLink(link).querySelector('.notation');
+  img.setAttribute('src', ds.image);
+  img.setAttribute('alt', `psalmodie, noty pro chorální nápěv ${ds.tone}.${ds.differentia}`)
 };
 
 const setPointing = (link) => {
