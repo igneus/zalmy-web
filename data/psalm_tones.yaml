@@ -130,11 +130,6 @@
     accents: 1
     preparatory: 3
     sliding: false
-  - name: A*
-    image: "/images/psalmodie_IValt-Ax.svg"
-    accents: 1
-    preparatory: 3
-    sliding: false
   - name: d
     image: "/images/psalmodie_IValt-d.svg"
     accents: 1
