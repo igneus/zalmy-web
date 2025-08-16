@@ -70,16 +70,28 @@ module Psalms
           .reject {|i| i =~ /doxologie|responsorialni|pascha|tedeum/ }
           .collect do |i|
           parsed = reader.read_str(File.read(i))
+          basename = File.basename(i)
+          incipit_words =
+            if basename.include? 'magnificat'
+              # whole verse as incipit
+              parsed
+                .verses[0]
+                .parts
+                .collect(&:words)
+                .flatten
+            else
+              parsed
+                .verses[0]
+                .parts[0]
+                .words
+            end
 
           Psalm.new(
             parsed.header.title,
             i,
-            File.basename(i).sub(/\.zalm$/, ''),
-            File.basename(i).start_with?('kantikum'),
-            parsed
-              .verses[0]
-              .parts[0]
-              .words
+            basename.sub(/\.zalm$/, ''),
+            basename.start_with?('kantikum'),
+            incipit_words
               .collect {|w| w.syllables.join '' }
               .join(' ')
               .strip
