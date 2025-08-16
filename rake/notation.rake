@@ -34,7 +34,7 @@ PsalmToneGroup
 end
 
 desc 'psalm tone notation'
-multitask notated_tones: notation_images
+task notated_tones: notation_images
 
 file tmpfile('psalmodie.ly') => iafiles('nastroje/psalmtone.rb', 'psalmodie/zakladni.yml') + [__FILE__] do |t|
   FileUtils.mkdir_p 'tmp'
