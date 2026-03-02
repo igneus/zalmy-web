@@ -179,8 +179,8 @@
     accents: 2
     preparatory: 0
     sliding: false
-  - name: b
-    image: "/images/psalmodie_VII-b.svg"
+  - name: h
+    image: "/images/psalmodie_VII-h.svg"
     accents: 2
     preparatory: 0
     sliding: false
