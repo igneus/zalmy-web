@@ -2,6 +2,11 @@
 
 h1= psalm.title
 
+noscript
+  | Hudební obsah této stránky (výběr nápěvu psalmodie,
+  |  zobrazení notace, zvýraznění slabik významných pro daný nápěv)
+  |  je dostupný jen se zapnutým JavaScriptem.
+
 .single-psalm= partial 'psalm', locals: {psalm: psalm}
 
 - content_for :footer do

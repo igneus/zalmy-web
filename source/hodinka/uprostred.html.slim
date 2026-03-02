@@ -4,5 +4,7 @@ title: Modlitba uprostřed dne
 
 h1 Modlitba uprostřed dne
 
+= partial 'hodinka/noscript'
+
 - 1.upto(3) do |i|
   = partial 'psalm', locals: {psalm: psalms['zalm118' + 'i' * i]}
