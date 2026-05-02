@@ -2,7 +2,7 @@ require 'json'
 
 require 'dotenv/load'
 
-IAP = IN_ADIUTORIUM_PATH = 'IN_ADIUTORIUM_PATH'.yield_self do |name|
+IN_ADIUTORIUM_PATH = 'IN_ADIUTORIUM_PATH'.yield_self do |name|
   ENV[name] || raise("please set environment variable #{name}")
 end
 LILYPOND = ENV['LILYPOND'] || 'lilypond'
